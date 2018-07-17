@@ -1,4 +1,4 @@
-# Teste front-end Developer
+# Teste front-end developer
 O objetivo deste é entender como o desenvolvedor pensa em uma aplicação de larga escala, tendo um grande ecossistema de produtos onde é imprescindível que sua aplicação seja escalável, permitindo assim a inclusão de um novo produto ou provedor de serviços sem grandes dificuldades.
 
 # Instruções:

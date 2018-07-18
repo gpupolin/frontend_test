@@ -22,7 +22,7 @@ O objetivo deste é entender como o desenvolvedor pensa em uma aplicação de la
 * Utilização de package managers como Bower e npm;
 
 # Entrega:
-> Desejável que seja no Github Pages, utilizando as instruções abaixo. 
+> Desejável que seja no Github Pages, utilizando as instruções abaixo...
 * Criar um repositório no GitHub, utilizando o Github Pages, mais detalhes em https://pages.github.com/;
 *	Enviar a URL navegável;
 * A URL navegável deve ter o formato http://usuario.github.io/repositorio/;

@@ -1,7 +1,7 @@
-# Teste front-end developer
+## Teste front-end developer
 O objetivo deste é entender como o desenvolvedor pensa em uma aplicação de larga escala, tendo um grande ecossistema de produtos onde é imprescindível que sua aplicação seja escalável, permitindo assim a inclusão de um novo produto ou provedor de serviços sem grandes dificuldades.
 
-# Instruções:
+## Instruções:
 * Desenvolva o HTML/CSS da tela à partir do layout disponível na pasta materiais/layout/resorts;
 * Os breakpoints para desenvolvimento são: 320, 768 e 1280, utilize o conceito mobile first;
 * Desenvolva seu App utilizando algum framework MV* de mercado como: Angular, Ember e React;
@@ -30,4 +30,4 @@ O objetivo deste é entender como o desenvolvedor pensa em uma aplicação de la
 
 
 
-# Muito Boa Sorte. 
+# Muito Boa Sorte.

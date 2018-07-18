@@ -7,7 +7,7 @@ O objetivo deste é entender como o desenvolvedor pensa em uma aplicação de la
 * Desenvolva seu App utilizando algum framework MV* de mercado como: Angular, Ember e React;
 * Baseando-se no layout da página crie um mock dos dados para consumir via API;
 
-# Analisaremos em seu projeto:
+## Analisaremos em seu projeto:
 * Desenvolvimento de CSS componentizado;
 * Organização e minificação de seu CSS;
 * Organização e minificação de seu JavaScript;
@@ -15,19 +15,19 @@ O objetivo deste é entender como o desenvolvedor pensa em uma aplicação de la
 * Ser fiel aos layouts disponibilizados;
 * O suporte crossbrowser a IE9+, Chrome e Firefox;
 
-# Consideramos como diferencial:
+## Consideramos como diferencial:
 * Utilização de uma linguagem de preprocessador CSS (Sass, Less, Stylus, ...);
 * Utilização de bibliotecas ou frameworks CSS como Foundation, Bourbon, Animate.css ou outras;
 * Utilização de um task runner (Gulp, Brocolli, Grunt, ...);
 * Utilização de package managers como Bower e npm;
 
-# Entrega:
+## Entrega:
 > Desejável que seja no Github Pages, utilizando as instruções abaixo...
 * Criar um repositório no GitHub, utilizando o Github Pages, mais detalhes em https://pages.github.com/;
-*	Enviar a URL navegável;
+* Enviar a URL navegável;
 * A URL navegável deve ter o formato http://usuario.github.io/repositorio/;
 * Pode ser enviado também como ".rar" no https://wetransfer.com/;
 
 
 
-# Muito Boa Sorte.
+## Muito Boa Sorte.

@@ -19,13 +19,12 @@ Aqui você terá a oportunidade de desenvolver uma página de resultados de busc
 * O suporte crossbrowser a _IE9+_, _Chrome_ e _Firefox_;
 * Fidelidade quanto ao _layout_ disponibilizado.
 
-## Consideraremos como diferencial:
+## Gostariamos de ver:
 
 Técnicas para arquitetura da aplicação e desenvolvimento do código como:
 * Estruturas de fluxo (_GitFlow_, _Stable mainline_, ...) e boas práticas como _commits_ atômicos;
-* Orientação a objetos, programação funcional, programação reativa, ...;
-* _KISS, DRY, Code clean_, ...;
-* _ITCSS, BEM, Smacss_, ...;
+* Padrões de programação como orientação a objetos, programação funcional, programação reativa, ...;
+* Princípios com _KISS, DRY, Code clean, ITCSS, BEM, Smacss_, ...
 
 E implementação de ferramentas:
 * Para gerenciamento da estrutura como _bundler/task runner_ (Ex.: _Webpack, Browserify, Gulp, Brocolli_, ...);

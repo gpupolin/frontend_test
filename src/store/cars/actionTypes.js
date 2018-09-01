@@ -1,0 +1,1 @@
+export const FETCHED_DATA = "cars.FETCHED_DATA";

@@ -1,17 +1,27 @@
-import { Record } from "immutable";
+import { Record, List } from "immutable";
+import * as types from "./actionTypes";
 
 const carstate = Record({
-  title: ""
+  isFetching: false,
+  data: Record({})
 });
 
+
 const initialState = carstate({
-  title: "Aluguel de Carros com React/Redux"
+  isFetching: false,
+  data: {}
 });
 
 export default function reduce(state = initialState, action = {}) {
-  return state;
+  switch (action.type) {
+    case types.FETCHED_DATA: {
+      return state.merge({data:action.payload});
+    }
+    default:
+      return state;
+  }
 }
 
-export function getTitle(state) {
-  return state.cars.get("title");
+export function getCars(state) {
+  return state.cars.toJS().data.results ? [...state.cars.toJS().data.results[0].cars] : null;
 }

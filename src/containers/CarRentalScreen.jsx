@@ -5,16 +5,18 @@ import * as carsSelectors from "../store/cars/reducer";
 import * as carsActions from "../store/cars/actions";
 
 class CarRentalScreen extends Component {
-  componentDidMount(){
+  componentDidMount() {
     this.props.dispatch(carsActions.getCarsRental());
   }
 
   render() {
+    if (this.props.isFetching) return <h1>Carregando...</h1>;
+
     return (
       <ul>
-        {this.props.data && 
+        {this.props.data &&
           this.props.data.map(c => {
-            return <li>{c.vehicle_info.acriss_code}</li>;
+            return <li key={c.getIn(["vehicle_info", "acriss_code"])}>{c.getIn(["vehicle_info", "acriss_code"])}</li>;
           })}
       </ul>
     );
@@ -23,7 +25,8 @@ class CarRentalScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    data: carsSelectors.getCars(state)
+    data: carsSelectors.getCars(state),
+    isFetching: carsSelectors.isFetching(state)
   };
 }
 

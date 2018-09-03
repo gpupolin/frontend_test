@@ -29,12 +29,18 @@ export default function reduce(state = initialState, action = {}) {
   }
 }
 
+/** Seletores para buscar as informações do estado */
+
 export function isFetching(state) {
   return state.cars.get("isFetching");
 }
 
 export function getCars(state) {
+  // return state.cars.get("data").first()
+  //   ? state.cars.getIn(["data", 0, "cars"]).toJS()
+  //   : null;
+
   return state.cars.get("data").first()
-    ? state.cars.getIn(["data", 0, "cars"])
+    ? state.cars.get("data").toJS()
     : null;
 }

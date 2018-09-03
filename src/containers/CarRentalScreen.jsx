@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import * as carsSelectors from "../store/cars/reducer";
 import * as carsActions from "../store/cars/actions";
 
-/** Componente responsável pelo aluguel de carros. É um smart component, então possui 
+/** Componente responsável pelo aluguel de carros. É um smart component, então possui
  * conhecimento do estado da aplicação */
 class CarRentalScreen extends Component {
   componentDidMount() {
@@ -19,8 +19,8 @@ class CarRentalScreen extends Component {
         {this.props.data &&
           this.props.data.map(c => {
             return (
-              <li key={c.getIn(["vehicle_info", "acriss_code"])}>
-                {c.getIn(["vehicle_info", "acriss_code"])}
+              <li key={c.company_code + c.airport + c.vehicle_info.acriss_code}>
+                {`${c.company_code} ${c.vehicle_info.acriss_code}`}
               </li>
             );
           })}

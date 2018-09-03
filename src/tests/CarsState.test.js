@@ -1,5 +1,5 @@
 import reducer from "../store/cars/reducer";
-import AmadeusCarsRentalMock from "./mocks/AmadeusCarsRental";
+import { CarRentalComplex, CarRentalSimple } from "./mocks/AmadeusCarsRental";
 import { Record, List } from "immutable";
 
 const carstate = Record({
@@ -20,8 +20,9 @@ describe("mudanças do estado dos carros para aluguel", () => {
   test("dados retornados", () => {
     const state = reducer(initialState, {
       type: "cars.FETCHED_DATA",
-      ...{ payload: AmadeusCarsRentalMock.results }
+      ...{ payload: CarRentalComplex.results }
     });
-    expect(state.data.toJS()).toEqual(AmadeusCarsRentalMock.results);
+    expect(state.data.toJS()).toEqual(CarRentalComplex.results);
+    expect(state.get("isFetching")).toEqual(false);
   });
 });

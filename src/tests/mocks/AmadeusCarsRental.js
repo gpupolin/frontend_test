@@ -1,4 +1,53 @@
-export default {
+export const CarRentalSimple = {
+  results: [
+    {
+      provider: {
+        company_code: "ZT"
+      },
+      cars: [
+        {
+          vehicle_info: {
+            acriss_code: "XX",
+            transmission: "No information available",
+            fuel: "No information available",
+            category: "Special",
+            type: "Special"
+          }
+        },
+        {
+          vehicle_info: {
+            acriss_code: "IFAR",
+            transmission: "Automatic",
+            fuel: "Unspecified",
+            air_conditioning: true,
+            category: "Intermediate",
+            type: "SUV"
+          }
+        }
+      ]
+    },
+    {
+      provider: {
+        company_code: "ZD",
+        company_name: "BUDGET"
+      },
+      cars: [
+        {
+          vehicle_info: {
+            acriss_code: "PCAR",
+            transmission: "Automatic",
+            fuel: "Unspecified",
+            air_conditioning: true,
+            category: "Premium",
+            type: "2/4 Door"
+          }
+        }
+      ]
+    }
+  ]
+};
+
+export const CarRentalComplex = {
   results: [
     {
       provider: {

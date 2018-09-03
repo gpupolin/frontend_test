@@ -1,3 +1,6 @@
+/** Toda manipulação do estado acontece dentros dos reducers. Aqui nâo deve ocorrer nenhum
+ * efeito colateral.
+ */
 import { Record, List } from "immutable";
 import * as types from "./actionTypes";
 
@@ -32,9 +35,6 @@ export function isFetching(state) {
 
 export function getCars(state) {
   return state.cars.get("data").first()
-    ? state.cars
-        .get("data")
-        .first()
-        .get("cars")
+    ? state.cars.getIn(["data", 0, "cars"])
     : null;
 }

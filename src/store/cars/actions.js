@@ -1,3 +1,6 @@
+/** As actions são responsáveis por mandar uma mensagem para o estado. Nesse ponto ocorrem os 
+ * efeitos colaterais
+ */
 import AmadeusService from "../../services/amadeus";
 import * as types from "./actionTypes";
 

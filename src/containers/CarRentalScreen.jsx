@@ -16,8 +16,8 @@ class CarRentalScreen extends Component {
 
     return (
       <ul>
-        {this.props.data &&
-          this.props.data.map(c => {
+        {this.props.cars &&
+          this.props.cars.map(c => {
             return (
               <li key={c.company_code + c.airport + c.vehicle_info.acriss_code}>
                 {`${c.estimated_total.amount} Car ${c.vehicle_info.category} ${c.vehicle_info.air_conditioning ? "with Air" : "without Air"}`}
@@ -31,7 +31,7 @@ class CarRentalScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    data: carsSelectors.getCars(state),
+    cars: carsSelectors.getCars(state),
     isFetching: carsSelectors.isFetching(state)
   };
 }

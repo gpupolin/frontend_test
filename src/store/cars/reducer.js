@@ -41,6 +41,7 @@ export function isFetching(state) {
   return state.cars.get("isFetching");
 }
 
+//TODO: Implementar a paginação 
 export function getCars(state) {
   return state.cars
           .get("data")

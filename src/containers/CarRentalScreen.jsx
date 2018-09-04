@@ -20,7 +20,7 @@ class CarRentalScreen extends Component {
           this.props.data.map(c => {
             return (
               <li key={c.company_code + c.airport + c.vehicle_info.acriss_code}>
-                {`${c.company_code} ${c.vehicle_info.acriss_code}`}
+                {`${c.estimated_total.amount} Car ${c.vehicle_info.category} ${c.vehicle_info.air_conditioning ? "with Air" : "without Air"}`}
               </li>
             );
           })}

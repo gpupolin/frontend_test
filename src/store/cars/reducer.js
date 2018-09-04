@@ -6,12 +6,18 @@ import * as types from "./actionTypes";
 
 const carstate = Record({
   isFetching: false,
-  data: List()
+  data: List(),
+  sort: "lowest_price",
+  page: 0,
+  countByPage: 10
 });
 
 const initialState = carstate({
   isFetching: false,
-  data: List()
+  data: List(),
+  sort: "lowest_price",
+  page: 0,
+  countByPage: 10
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -36,11 +42,12 @@ export function isFetching(state) {
 }
 
 export function getCars(state) {
-  // return state.cars.get("data").first()
-  //   ? state.cars.getIn(["data", 0, "cars"]).toJS()
-  //   : null;
-
-  return state.cars.get("data").first()
-    ? state.cars.get("data").toJS()
-    : null;
+  return state.cars
+          .get("data")
+          .sort(state.cars.sort === "lowest_price" ? sortByLowestPrice : sortByBiggestPrice)
+          .slice(state.cars.page,  state.cars.page + state.cars.countByPage)
+          .toJS();
 }
+
+const sortByLowestPrice = (a, b) => Number(a.get("estimated_total").get("amount")) - Number(b.get("estimated_total").get("amount"));
+const sortByBiggestPrice = (a, b) => Number(b.get("estimated_total").get("amount")) - Number(a.get("estimated_total").get("amount"));

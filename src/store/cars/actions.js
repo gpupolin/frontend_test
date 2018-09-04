@@ -10,30 +10,17 @@ export function getCarsRental() {
 
     const data = await AmadeusService.getCarRentalAirportSearch();
 
-    // console.log(
-    //   data.results
-    //     // .filter(items => items.cars)
-    //     .map(items => {
-    //       return items.cars.map(c => {
-    //         return {
-    //           ...c,
-    //           ...items
-    //         };
-    //       });
-    //     })
-    //     .reduce((p, c) => p.concat(c))
-    // );
-
     dispatch({
       type: types.FETCHED_DATA,
       ...{
         payload: data.results
-          // .filter(items => items.cars)
           .map(items => {
             return items.cars.map(c => {
               return {
                 ...c,
                 ...items.provider,
+                ...items.location,
+                ...items.address,
                 ...{airport: items.airport}
               };
             });

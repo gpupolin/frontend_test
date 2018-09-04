@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import * as carsSelectors from "../store/cars/reducer";
 import * as carsActions from "../store/cars/actions";
 
+import Vehicle from "../components/Vehicle";
+
 /** Componente responsável pelo aluguel de carros. É um smart component, então possui
  * conhecimento do estado da aplicação */
 class CarRentalScreen extends Component {
@@ -14,18 +16,19 @@ class CarRentalScreen extends Component {
   render() {
     if (this.props.isFetching) return <h1>Carregando...</h1>;
 
-    return (
-      <ul>
-        {this.props.cars &&
-          this.props.cars.map(c => {
-            return (
-              <li key={c.company_code + c.airport + c.vehicle_info.acriss_code}>
-                {`${c.estimated_total.amount} Car ${c.vehicle_info.category} ${c.vehicle_info.air_conditioning ? "with Air" : "without Air"}`}
-              </li>
-            );
-          })}
-      </ul>
-    );
+    return this.props.cars.map(c => {
+      return (
+        <Vehicle
+          company={c.company_name}
+          name={`Car ${c.vehicle_info.category} ${
+            c.vehicle_info.air_conditioning ? "with Air" : "without Air"
+          }`}
+          photo={c.images[0].url}
+          amount={c.estimated_total.amount}
+          currency={c.estimated_total.currency}
+        />
+      );
+    });
   }
 }
 

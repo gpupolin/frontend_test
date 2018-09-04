@@ -41,14 +41,22 @@ export function isFetching(state) {
   return state.cars.get("isFetching");
 }
 
-//TODO: Implementar a paginação 
+//TODO: Implementar a paginação
 export function getCars(state) {
   return state.cars
-          .get("data")
-          .sort(state.cars.sort === "lowest_price" ? sortByLowestPrice : sortByBiggestPrice)
-          .slice(state.cars.page,  state.cars.page + state.cars.countByPage)
-          .toJS();
+    .get("data")
+    .sort(
+      state.cars.sort === "lowest_price"
+        ? sortByLowestPrice
+        : sortByBiggestPrice
+    )
+    .slice(state.cars.page, state.cars.page + state.cars.countByPage)
+    .toJS();
 }
 
-const sortByLowestPrice = (a, b) => Number(a.get("estimated_total").get("amount")) - Number(b.get("estimated_total").get("amount"));
-const sortByBiggestPrice = (a, b) => Number(b.get("estimated_total").get("amount")) - Number(a.get("estimated_total").get("amount"));
+const sortByLowestPrice = (a, b) =>
+  Number(a.get("estimated_total").get("amount")) -
+  Number(b.get("estimated_total").get("amount"));
+const sortByBiggestPrice = (a, b) =>
+  Number(b.get("estimated_total").get("amount")) -
+  Number(a.get("estimated_total").get("amount"));

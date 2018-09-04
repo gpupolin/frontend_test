@@ -23,9 +23,12 @@ class CarRentalScreen extends Component {
           name={`Car ${c.vehicle_info.category} ${
             c.vehicle_info.air_conditioning ? "with Air" : "without Air"
           }`}
-          photo={c.images[0].url}
+          photo={c.images.length > 0 ? c.images[0].url : ""}
           amount={c.estimated_total.amount}
           currency={c.estimated_total.currency}
+          fuel={c.vehicle_info.fuel}
+          type={c.vehicle_info.type}
+          air_conditioning={c.vehicle_info.air_conditioning}
         />
       );
     });

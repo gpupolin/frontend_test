@@ -138,7 +138,10 @@ class Vehicle extends Component {
             </div>
           </DivFlex>
           <VehicleDetailWrapper>
-            <p>A Automático</p>
+            <p>{this.props.fuel}</p>
+            <p>{this.props.transmission}</p>
+            <p>{this.props.type}</p>
+            <p>{this.props.air_conditioning}</p>
           </VehicleDetailWrapper>
         </VehicleInfoWrapper>
         <RentalWrapper>

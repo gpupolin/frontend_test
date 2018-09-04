@@ -1,17 +1,54 @@
-import { Record } from "immutable";
+/** Toda manipulação do estado acontece dentros dos reducers. Aqui nâo deve ocorrer nenhum
+ * efeito colateral.
+ */
+import { Record, List } from "immutable";
+import * as types from "./actionTypes";
 
 const carstate = Record({
-  title: ""
+  isFetching: false,
+  data: List(),
+  sort: "lowest_price",
+  page: 0,
+  countByPage: 10
 });
 
 const initialState = carstate({
-  title: "Aluguel de Carros com React/Redux"
+  isFetching: false,
+  data: List(),
+  sort: "lowest_price",
+  page: 0,
+  countByPage: 10
 });
 
 export default function reduce(state = initialState, action = {}) {
-  return state;
+  switch (action.type) {
+    case types.REQUESTED_DATA: {
+      return state.set("isFetching", true);
+    }
+    case types.FETCHED_DATA: {
+      return state
+        .set("data", state.data.merge(action.payload))
+        .set("isFetching", false);
+    }
+    default:
+      return state;
+  }
 }
 
-export function getTitle(state) {
-  return state.cars.get("title");
+/** Seletores para buscar as informações do estado */
+
+export function isFetching(state) {
+  return state.cars.get("isFetching");
 }
+
+//TODO: Implementar a paginação 
+export function getCars(state) {
+  return state.cars
+          .get("data")
+          .sort(state.cars.sort === "lowest_price" ? sortByLowestPrice : sortByBiggestPrice)
+          .slice(state.cars.page,  state.cars.page + state.cars.countByPage)
+          .toJS();
+}
+
+const sortByLowestPrice = (a, b) => Number(a.get("estimated_total").get("amount")) - Number(b.get("estimated_total").get("amount"));
+const sortByBiggestPrice = (a, b) => Number(b.get("estimated_total").get("amount")) - Number(a.get("estimated_total").get("amount"));

@@ -1,31 +1,41 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import * as theme from "../styles/theme";
 
-const VehicleWrapper = styled(theme.ContainerFlex)`
+//TODO: Organizar os estilos
+//TODO: Adicionar os icones dos item de detalhes
+//TODO: Adicionar ver detalhes
+//TODO: Adicionar botão Like
+//TODO: Deixar responsivo
+//TODO: Documentar o componente
+
+const VehicleStyled = styled(theme.ContainerFlex)`
   justify-content: space-between;
   align-items: stretch;
   margin: 32px auto;
 `;
 
-const VehicleInfoWrapper = styled.div`
+const VehicleInfoStyled = styled.div`
   border: solid 1px #cccccc;
+  border-right: none;
   width: 100%;
 `;
 
-const VehicleImageWrapper = styled.img`
+const VehicleImageStyled = styled.img`
   width: 222px;
   height: 129px;
   padding: 10px 18px 30px 18px;
 `;
 
-const RentalWrapper = styled(theme.ContainerFlex)`
+const RentalStyled = styled(theme.ContainerFlex)`
   background-color: #ffdc2c;
   flex-flow: column wrap;
   align-items: center;
 `;
 
-const ButtonRentalWrapper = styled.button`
+const ButtonRentalStyled = styled.button`
   border-radius: 6px;
   background-color: #3658a4;
   margin: 10px 0 10px 0;
@@ -56,40 +66,46 @@ const Title = styled.p`
     `}
 `;
 
-const TitlePrice = styled.span`
-  ${theme.fontArialMedium} 
-  font-weight: bold;
+const TitlePriceStyled = styled.span`
+  ${theme.fontArialMedium} font-weight: bold;
   text-align: center;
   color: #263c70;
 `;
 
-const TitleRentalSmall = styled.span`
+const TitleRentalSmallStyled = styled.span`
   ${theme.fontArialSmall} text-align: center;
   color: #635109;
 `;
 
-const TitleRentalButton = styled(TitlePrice)`
+const TitleRentalButtonStyled = styled(TitlePriceStyled)`
   color: #ffffff;
   text-transform: uppercase;
 `;
 
-const TitlePriceBig = styled(TitlePrice)`
+const TitlePriceBigStyled = styled(TitlePriceStyled)`
   font-size: 21px;
   line-height: 0.67;
 `;
 
-const VehicleDetailWrapper = styled(theme.ContainerFlex)`
+const VehicleDetailStyled = styled(theme.ContainerFlex)`
   ${theme.fontArialSmall} border-top: solid 1px #e0e0e0;
-  padding: 15px;
+  padding: 0 15px 15px 15px;
   text-align: left;
   color: #3658a4;
+  display: flex;
+  flex-flow: row wrap;
 `;
 
-const VehicleImageAndCompanyWrapper = styled(theme.ContainerFlex)`
+const VehicleDetailItensStyled = styled.span`
+  width: 33.33%;
+  margin-top: 15px;
+`;
+
+const VehicleImageAndCompanyStyled = styled(theme.ContainerFlex)`
   flex-flow: column wrap;
 `;
 
-const ParagraphPrice = styled.p`
+const ParagraphPriceStyled = styled.p`
   margin: 10px 0 0 0;
 `;
 
@@ -100,41 +116,70 @@ const CompanyStyled = styled.span`
   font-size: 14px;
 `;
 
+const ArrowRightStyled = styled.div`
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid white;
+  align-self: center;
+`;
+
+const ContainerButtonRentStyled = styled(theme.ContainerFlex)`
+  justify-content: space-between;
+  width: 100%;
+`;
+
 class Vehicle extends Component {
   render() {
     return (
-      <VehicleWrapper>
-        <VehicleInfoWrapper>
+      <VehicleStyled>
+        <VehicleInfoStyled>
           <theme.ContainerFlex>
-            <VehicleImageAndCompanyWrapper>
+            <VehicleImageAndCompanyStyled>
               <CompanyStyled>{this.props.company}</CompanyStyled>
-              <VehicleImageWrapper src={this.props.photo} />
-            </VehicleImageAndCompanyWrapper>
+              <VehicleImageStyled src={this.props.photo} />
+            </VehicleImageAndCompanyStyled>
             <div>
               <Title large>{this.props.name}</Title>
-              <p>- Mais infos</p>
+              <FontAwesomeIcon icon={faHeart}  />
+              {/* <p>- Mais infos</p> */}
             </div>
           </theme.ContainerFlex>
-          <VehicleDetailWrapper>
-            <p>{this.props.fuel}</p>
-            <p>{this.props.transmission}</p>
-            <p>{this.props.type}</p>
-            <p>{this.props.air_conditioning}</p>
-          </VehicleDetailWrapper>
-        </VehicleInfoWrapper>
-        <RentalWrapper>
-          <Title color={theme.secondary} margin={"15px 30px 5px 30px"} medium >Rental Amount</Title>
-          <ParagraphPrice>
-            <TitlePrice>{this.props.currency} </TitlePrice>
-            <TitlePriceBig>{this.props.amount}</TitlePriceBig>
-          </ParagraphPrice>
-          <TitlePrice>up to 10x</TitlePrice>
-          <ButtonRentalWrapper>
-            <TitleRentalButton>Rent</TitleRentalButton>
-          </ButtonRentalWrapper>
-          <TitleRentalSmall>Taxes included</TitleRentalSmall>
-        </RentalWrapper>
-      </VehicleWrapper>
+          <VehicleDetailStyled>
+            <VehicleDetailItensStyled>
+              {this.props.fuel}
+            </VehicleDetailItensStyled>
+            <VehicleDetailItensStyled>
+              {this.props.transmission}
+            </VehicleDetailItensStyled>
+            <VehicleDetailItensStyled>
+              {this.props.type}
+            </VehicleDetailItensStyled>
+            <VehicleDetailItensStyled>
+              {this.props.air_conditioning}
+            </VehicleDetailItensStyled>
+          </VehicleDetailStyled>
+        </VehicleInfoStyled>
+        <RentalStyled>
+          <Title color={theme.secondary} margin={"15px 30px 5px 30px"} medium>
+            Rental Amount
+          </Title>
+          <ParagraphPriceStyled>
+            <TitlePriceStyled>{this.props.currency} </TitlePriceStyled>
+            <TitlePriceBigStyled>{this.props.amount}</TitlePriceBigStyled>
+          </ParagraphPriceStyled>
+          <TitlePriceStyled>up to 10x</TitlePriceStyled>
+          <ContainerButtonRentStyled>
+            <ArrowRightStyled />
+            <ButtonRentalStyled>
+              <TitleRentalButtonStyled>Rent</TitleRentalButtonStyled>
+            </ButtonRentalStyled>
+            <div />
+          </ContainerButtonRentStyled>
+          <TitleRentalSmallStyled>Taxes included</TitleRentalSmallStyled>
+        </RentalStyled>
+      </VehicleStyled>
     );
   }
 }

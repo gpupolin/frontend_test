@@ -11,11 +11,18 @@ import CarRentalScreen from "../containers/CarRentalScreen";
 
 import Vehicle from "../components/Vehicle";
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons'
+
 const store = createStore(
   combineReducers(reducers),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(thunk)
 );
+
+//library.add(faHeart, faHeartRegular)
 
 addDecorator(story => <Provider store={store}>{story()}</Provider>);
 
@@ -27,7 +34,8 @@ storiesOf("Aluguel de Carros", module)
                           photo={"https://cdn-istoedinheiro-ssl.akamaized.net/wp-content/uploads/sites/17/2018/02/palio.jpg"} 
                           amount={"12.50"}
                           currency={"USD"}
-                          fuel={"Automático"}
+                          transmission={"Automático"}
+                          fuel={"Gasolina"}
                           type={"2/4 portas"}
-                          air_conditioning={true}
+                          air_conditioning={"Ar"}
                           />);

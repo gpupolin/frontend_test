@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import * as theme from "../styles/theme";
 
 //TODO: Organizar os estilos
@@ -67,12 +67,12 @@ const Title = styled.p`
 `;
 
 const TitleIcon = styled(Title)`
-    display:flex;
-    justify-content: space-between;
-    padding-right: 15px;
-    align-items: center;
-    margin-top:15px;
-`
+  display: flex;
+  justify-content: space-between;
+  padding-right: 15px;
+  align-items: center;
+  margin-top: 15px;
+`;
 
 const TitlePriceStyled = styled.span`
   ${theme.fontArialMedium} font-weight: bold;
@@ -104,7 +104,7 @@ const VehicleDetailStyled = styled(theme.ContainerFlex)`
   flex-flow: row wrap;
 `;
 
-const VehicleDetailItensStyled = styled.span`
+const VehicleDetailItemStyled = styled.span`
   width: 33.33%;
   margin-top: 15px;
 `;
@@ -139,8 +139,8 @@ const ContainerButtonRentStyled = styled(theme.ContainerFlex)`
 `;
 
 const FontAwesomeIconStyled = styled(FontAwesomeIcon)`
-    color: ${props => props.color || "gray"}
-`
+  color: ${props => props.color || "gray"};
+`;
 
 class Vehicle extends Component {
   render() {
@@ -152,25 +152,27 @@ class Vehicle extends Component {
               <CompanyStyled>{this.props.company}</CompanyStyled>
               <VehicleImageStyled src={this.props.photo} />
             </VehicleImageAndCompanyStyled>
-            <div style={{flexGrow:1}}>
-              <TitleIcon large>{this.props.name} <FontAwesomeIconStyled icon={faHeart}  /></TitleIcon>
-              
+            <div style={{ flexGrow: 1 }}>
+              <TitleIcon large>
+                {this.props.name} <FontAwesomeIconStyled icon={faHeart} />
+              </TitleIcon>
+
               {/* <p>- Mais infos</p> */}
             </div>
           </theme.ContainerFlex>
           <VehicleDetailStyled>
-            <VehicleDetailItensStyled>
+            <VehicleDetailItemStyled>
               {this.props.fuel}
-            </VehicleDetailItensStyled>
-            <VehicleDetailItensStyled>
+            </VehicleDetailItemStyled>
+            <VehicleDetailItemStyled>
               {this.props.transmission}
-            </VehicleDetailItensStyled>
-            <VehicleDetailItensStyled>
+            </VehicleDetailItemStyled>
+            <VehicleDetailItemStyled>
               {this.props.type}
-            </VehicleDetailItensStyled>
-            <VehicleDetailItensStyled>
+            </VehicleDetailItemStyled>
+            <VehicleDetailItemStyled>
               {this.props.air_conditioning}
-            </VehicleDetailItensStyled>
+            </VehicleDetailItemStyled>
           </VehicleDetailStyled>
         </VehicleInfoStyled>
         <RentalStyled>
@@ -184,10 +186,13 @@ class Vehicle extends Component {
           <TitlePriceStyled>up to 10x</TitlePriceStyled>
           <ContainerButtonRentStyled>
             <ArrowRightStyled />
-            <ButtonRentalStyled>
-              <TitleRentalButtonStyled>Rent</TitleRentalButtonStyled>
-            </ButtonRentalStyled>
-            <div />
+            <theme.ContainerFlex
+              style={{ justifyContent: "center", flexGrow: "1" }}
+            >
+              <ButtonRentalStyled>
+                <TitleRentalButtonStyled>Rent</TitleRentalButtonStyled>
+              </ButtonRentalStyled>
+            </theme.ContainerFlex>
           </ContainerButtonRentStyled>
           <TitleRentalSmallStyled>Taxes included</TitleRentalSmallStyled>
         </RentalStyled>

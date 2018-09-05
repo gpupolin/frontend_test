@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import * as theme from "../styles/theme";
 
-const DivFlex = styled.div`
-  display: flex;
-`;
-
-const VehicleWrapper = styled(DivFlex)`
+const VehicleWrapper = styled(theme.ContainerFlex)`
   justify-content: space-between;
   align-items: stretch;
   margin: 32px auto;
@@ -22,7 +19,7 @@ const VehicleImageWrapper = styled.img`
   padding: 10px 18px 30px 18px;
 `;
 
-const RentalWrapper = styled(DivFlex)`
+const RentalWrapper = styled(theme.ContainerFlex)`
   background-color: #ffdc2c;
   flex-flow: column wrap;
   align-items: center;
@@ -38,48 +35,36 @@ const ButtonRentalWrapper = styled.button`
 `;
 
 const Title = styled.p`
-  font-family: Oswald;
-  font-size: 21px;
-  line-height: 0.67;
-  color: #263c70;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 0.67;
-  letter-spacing: normal;
-  text-align: left;
+  ${theme.fontOswald}
+  color: ${props => props.color || theme.primary};
   text-transform: uppercase;
-`;
-
-const TitleRental = styled(Title)`
-  font-size: 14px;
-  line-height: 1;
-  color: #635109;
-  margin: 15px 30px 5px 30px;
   white-space: nowrap;
+  ${props =>
+    props.large &&
+    css`
+      ${theme.fontOswaldLarge};
+    `}
+  ${props =>
+    props.medium &&
+    css`
+      ${theme.fontOswaldMedium};
+    `}
+  ${props =>
+    props.margin &&
+    css`
+      margin: ${props => props.margin};
+    `}
 `;
 
 const TitlePrice = styled.span`
-  font-family: Arial;
-  font-size: 14px;
-  line-height: 1;
+  ${theme.fontArialMedium} 
   font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  letter-spacing: normal;
   text-align: center;
   color: #263c70;
 `;
 
 const TitleRentalSmall = styled.span`
-  font-family: Arial;
-  font-size: 12px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.17;
-  letter-spacing: normal;
-  text-align: center;
+  ${theme.fontArialSmall} text-align: center;
   color: #635109;
 `;
 
@@ -93,50 +78,43 @@ const TitlePriceBig = styled(TitlePrice)`
   line-height: 0.67;
 `;
 
-const VehicleDetailWrapper = styled(DivFlex)`
-  border-top: solid 1px #e0e0e0;
+const VehicleDetailWrapper = styled(theme.ContainerFlex)`
+  ${theme.fontArialSmall} border-top: solid 1px #e0e0e0;
   padding: 15px;
-  font-family: Arial;
-  font-size: 12px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.75;
-  letter-spacing: normal;
   text-align: left;
   color: #3658a4;
 `;
 
-const VehicleImageAndCompanyWrapper = styled(DivFlex)`
+const VehicleImageAndCompanyWrapper = styled(theme.ContainerFlex)`
   flex-flow: column wrap;
-`
+`;
 
 const ParagraphPrice = styled.p`
   margin: 10px 0 0 0;
 `;
 
-const CompanyWrapper = styled.span`
-  text-align:right;
+const CompanyStyled = styled.span`
+  text-align: right;
   padding-right: 18px;
-  padding-top: 15px
+  padding-top: 15px;
   font-size: 14px;
-`
+`;
 
 class Vehicle extends Component {
   render() {
     return (
       <VehicleWrapper>
         <VehicleInfoWrapper>
-          <DivFlex>
+          <theme.ContainerFlex>
             <VehicleImageAndCompanyWrapper>
-              <CompanyWrapper>{this.props.company}</CompanyWrapper>
+              <CompanyStyled>{this.props.company}</CompanyStyled>
               <VehicleImageWrapper src={this.props.photo} />
             </VehicleImageAndCompanyWrapper>
             <div>
-              <Title>{this.props.name}</Title>
+              <Title large>{this.props.name}</Title>
               <p>- Mais infos</p>
             </div>
-          </DivFlex>
+          </theme.ContainerFlex>
           <VehicleDetailWrapper>
             <p>{this.props.fuel}</p>
             <p>{this.props.transmission}</p>
@@ -145,7 +123,7 @@ class Vehicle extends Component {
           </VehicleDetailWrapper>
         </VehicleInfoWrapper>
         <RentalWrapper>
-          <TitleRental>Rental Amount</TitleRental>
+          <Title color={theme.secondary} margin={"15px 30px 5px 30px"} medium >Rental Amount</Title>
           <ParagraphPrice>
             <TitlePrice>{this.props.currency} </TitlePrice>
             <TitlePriceBig>{this.props.amount}</TitlePriceBig>

@@ -27,4 +27,7 @@ storiesOf("Aluguel de Carros", module)
                           photo={"https://cdn-istoedinheiro-ssl.akamaized.net/wp-content/uploads/sites/17/2018/02/palio.jpg"} 
                           amount={"12.50"}
                           currency={"USD"}
+                          fuel={"Automático"}
+                          type={"2/4 portas"}
+                          air_conditioning={true}
                           />);

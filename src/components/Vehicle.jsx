@@ -7,7 +7,7 @@ import * as theme from "../styles/theme";
 //TODO: Organizar os estilos
 //TODO: Adicionar os icones dos item de detalhes
 //TODO: Adicionar ver detalhes
-//TODO: Adicionar botão Like
+//TODO: Toggle no botão like
 //TODO: Deixar responsivo
 //TODO: Documentar o componente
 
@@ -65,6 +65,14 @@ const Title = styled.p`
       margin: ${props => props.margin};
     `}
 `;
+
+const TitleIcon = styled(Title)`
+    display:flex;
+    justify-content: space-between;
+    padding-right: 15px;
+    align-items: center;
+    margin-top:15px;
+`
 
 const TitlePriceStyled = styled.span`
   ${theme.fontArialMedium} font-weight: bold;
@@ -130,6 +138,10 @@ const ContainerButtonRentStyled = styled(theme.ContainerFlex)`
   width: 100%;
 `;
 
+const FontAwesomeIconStyled = styled(FontAwesomeIcon)`
+    color: ${props => props.color || "gray"}
+`
+
 class Vehicle extends Component {
   render() {
     return (
@@ -140,9 +152,9 @@ class Vehicle extends Component {
               <CompanyStyled>{this.props.company}</CompanyStyled>
               <VehicleImageStyled src={this.props.photo} />
             </VehicleImageAndCompanyStyled>
-            <div>
-              <Title large>{this.props.name}</Title>
-              <FontAwesomeIcon icon={faHeart}  />
+            <div style={{flexGrow:1}}>
+              <TitleIcon large>{this.props.name} <FontAwesomeIconStyled icon={faHeart}  /></TitleIcon>
+              
               {/* <p>- Mais infos</p> */}
             </div>
           </theme.ContainerFlex>

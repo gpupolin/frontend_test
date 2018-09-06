@@ -1,32 +1,64 @@
 import React, { Component } from "react";
 import * as theme from "../styles/theme";
+import styled, { css } from "styled-components";
+import {
+  ButtonPrimary,
+  TitleRentalButtonStyled,
+  Title
+} from "../styles/component";
+
+const Container = styled.div`
+  margin-left: 70px;
+  margin-right: 30px;
+  background-color: #ffdc2c;
+  padding: 5px 10px;
+`;
 
 class VehicleFilter extends Component {
   render() {
     return (
-      <div style={{marginLeft: "70px", marginRight: "30px", backgroundColor:"#ffdc2c"}}>
+      <Container>
         <theme.ContainerFlex style={{ flexFlow: "column" }}>
-          Local de retirada
+          <Title color={theme.secondary} medium>
+            Local de retirada
+          </Title>
           <input type="text" />
           <span>
-            <input type="checkbox" /> Devolver o carro em outro local Local de
-            devolução
+            <label>
+              <input type="checkbox" />{" "}
+              <Title color={theme.secondary} medium>
+                Devolver o carro em outro local Local de devolução
+              </Title>
+            </label>
           </span>
           <input type="text" />
-          Retirada
+          <Title color={theme.secondary} medium>
+            Retirada
+          </Title>
           <input type="text" />
-          Devolução
+          <Title color={theme.secondary} medium>
+            Devolução
+          </Title>
           <input type="text" />
         </theme.ContainerFlex>
         <div>
           <div>Economize até 35%</div>
           <div>
-            <input type="checkbox" /> Incluir voo <input type="checkbox" />
-            Incluir hotel
+            <label>
+              <input type="checkbox" /> Incluir voo{" "}
+            </label>
+            <label>
+              <input type="checkbox" />
+              Incluir hotel
+            </label>
           </div>
         </div>
-        <button>Buscar</button>
-      </div>
+        <div>
+          <ButtonPrimary style={{ width: "100%" }}>
+            <span>Search</span>
+          </ButtonPrimary>
+        </div>
+      </Container>
     );
   }
 }

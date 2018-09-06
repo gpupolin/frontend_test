@@ -18,29 +18,33 @@ class CarRentalScreen extends Component {
   }
 
   render() {
-    if (this.props.isFetching) return <h1>Carregando...</h1>;
+    //if (this.props.isFetching) return <h1>Carregando...</h1>;
 
     return (
-      <theme.ContainerFlex style={{paddingTop: "35px", alignItems: "baseline"}}>
+      <theme.ContainerFlex
+        style={{ paddingTop: "35px", alignItems: "baseline" }}
+      >
         <VehicleFilter />
-        <div>
+        <div style={{ width: "100%" }}>
           <VehicleSort />
-          {this.props.cars.map(c => {
-            return (
-              <Vehicle
-                company={c.company_name}
-                name={`Car ${c.vehicle_info.category} ${
-                  c.vehicle_info.air_conditioning ? "with Air" : "without Air"
-                }`}
-                photo={c.images.length > 0 ? c.images[0].url : ""}
-                amount={c.estimated_total.amount}
-                currency={c.estimated_total.currency}
-                fuel={c.vehicle_info.fuel}
-                type={c.vehicle_info.type}
-                air_conditioning={c.vehicle_info.air_conditioning}
-              />
-            );
-          })}
+          {this.props.isFetching && <h1>Carregando...</h1>}
+          {!this.props.isFetching &&
+            this.props.cars.map(c => {
+              return (
+                <Vehicle
+                  company={c.company_name}
+                  name={`Car ${c.vehicle_info.category} ${
+                    c.vehicle_info.air_conditioning ? "with Air" : "without Air"
+                  }`}
+                  photo={c.images.length > 0 ? c.images[0].url : ""}
+                  amount={c.estimated_total.amount}
+                  currency={c.estimated_total.currency}
+                  fuel={c.vehicle_info.fuel}
+                  type={c.vehicle_info.type}
+                  air_conditioning={c.vehicle_info.air_conditioning}
+                />
+              );
+            })}
         </div>
       </theme.ContainerFlex>
     );

@@ -12,10 +12,6 @@ import CarRentalScreen from "../containers/CarRentalScreen";
 import Vehicle from "../components/Vehicle";
 import VehicleSort from "../components/VehicleSort";
 
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import VehicleFilter from "../components/VehicleFilter";
 
 const store = createStore(
@@ -23,8 +19,6 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(thunk)
 );
-
-//library.add(faHeart, faHeartRegular)
 
 addDecorator(story => <Provider store={store}>{story()}</Provider>);
 

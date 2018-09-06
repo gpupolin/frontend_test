@@ -3,6 +3,15 @@ import styled, { css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import * as theme from "../styles/theme";
+import {
+  ButtonPrimary,
+  Title,
+  TitleIcon,
+  TitlePriceBigStyled,
+  TitlePriceStyled,
+  TitleRentalButtonStyled,
+  TitleRentalSmallStyled
+} from "../styles/component";
 
 //TODO: Organizar os estilos
 //TODO: Adicionar os icones dos item de detalhes
@@ -11,88 +20,24 @@ import * as theme from "../styles/theme";
 //TODO: Deixar responsivo
 //TODO: Documentar o componente
 
-const VehicleStyled = styled(theme.ContainerFlex)`
+const Container = styled.div`
+  display: flex;
   justify-content: space-between;
   align-items: stretch;
-  margin: 32px auto;
+  margin: 32px 32px 32px 0;
 `;
 
-const VehicleInfoStyled = styled.div`
+const VehicleInfo = styled.div`
   border: solid 1px #cccccc;
   border-right: none;
   width: 100%;
 `;
 
-const VehicleImageStyled = styled.img`
-  width: 222px;
-  height: 129px;
-  padding: 10px 18px 30px 18px;
-`;
-
-const RentalStyled = styled(theme.ContainerFlex)`
+const RentalInfo = styled.div`
+  display: flex;
   background-color: #ffdc2c;
   flex-flow: column wrap;
   align-items: center;
-`;
-
-const ButtonRentalStyled = styled.button`
-  border-radius: 6px;
-  background-color: #3658a4;
-  margin: 10px 0 10px 0;
-  padding: 12px 32px 16px 32px;
-  border: 1px solid #3658a4;
-  cursor: pointer;
-`;
-
-const Title = styled.p`
-  ${theme.fontOswald}
-  color: ${props => props.color || theme.primary};
-  text-transform: uppercase;
-  white-space: nowrap;
-  ${props =>
-    props.large &&
-    css`
-      ${theme.fontOswaldLarge};
-    `}
-  ${props =>
-    props.medium &&
-    css`
-      ${theme.fontOswaldMedium};
-    `}
-  ${props =>
-    props.margin &&
-    css`
-      margin: ${props => props.margin};
-    `}
-`;
-
-const TitleIcon = styled(Title)`
-  display: flex;
-  justify-content: space-between;
-  padding-right: 15px;
-  align-items: center;
-  margin-top: 15px;
-`;
-
-const TitlePriceStyled = styled.span`
-  ${theme.fontArialMedium} font-weight: bold;
-  text-align: center;
-  color: #263c70;
-`;
-
-const TitleRentalSmallStyled = styled.span`
-  ${theme.fontArialSmall} text-align: center;
-  color: #635109;
-`;
-
-const TitleRentalButtonStyled = styled(TitlePriceStyled)`
-  color: #ffffff;
-  text-transform: uppercase;
-`;
-
-const TitlePriceBigStyled = styled(TitlePriceStyled)`
-  font-size: 21px;
-  line-height: 0.67;
 `;
 
 const VehicleDetailStyled = styled(theme.ContainerFlex)`
@@ -102,26 +47,31 @@ const VehicleDetailStyled = styled(theme.ContainerFlex)`
   color: #3658a4;
   display: flex;
   flex-flow: row wrap;
-`;
 
-const VehicleDetailItemStyled = styled.span`
-  width: 33.33%;
-  margin-top: 15px;
+  & span {
+    width: 33.33%;
+    margin-top: 15px;
+  }
 `;
 
 const VehicleImageAndCompanyStyled = styled(theme.ContainerFlex)`
   flex-flow: column wrap;
+  & span {
+    text-align: right;
+    padding-right: 18px;
+    padding-top: 15px;
+    font-size: 14px;
+  }
+
+  & img {
+    width: 222px;
+    height: 129px;
+    padding: 10px 18px 30px 18px;
+  }
 `;
 
 const ParagraphPriceStyled = styled.p`
   margin: 10px 0 0 0;
-`;
-
-const CompanyStyled = styled.span`
-  text-align: right;
-  padding-right: 18px;
-  padding-top: 15px;
-  font-size: 14px;
 `;
 
 const ArrowRightStyled = styled.div`
@@ -133,9 +83,16 @@ const ArrowRightStyled = styled.div`
   align-self: center;
 `;
 
-const ContainerButtonRentStyled = styled(theme.ContainerFlex)`
+const ContainerButtonRent = styled.div`
+  display: flex;
   justify-content: space-between;
   width: 100%;
+
+  & div:not(:first-child) {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+  }
 `;
 
 const FontAwesomeIconStyled = styled(FontAwesomeIcon)`
@@ -145,12 +102,12 @@ const FontAwesomeIconStyled = styled(FontAwesomeIcon)`
 class Vehicle extends Component {
   render() {
     return (
-      <VehicleStyled>
-        <VehicleInfoStyled>
+      <Container>
+        <VehicleInfo>
           <theme.ContainerFlex>
             <VehicleImageAndCompanyStyled>
-              <CompanyStyled>{this.props.company}</CompanyStyled>
-              <VehicleImageStyled src={this.props.photo} />
+              <span>{this.props.company}</span>
+              <img src={this.props.photo} />
             </VehicleImageAndCompanyStyled>
             <div style={{ flexGrow: 1 }}>
               <TitleIcon large>
@@ -161,21 +118,13 @@ class Vehicle extends Component {
             </div>
           </theme.ContainerFlex>
           <VehicleDetailStyled>
-            <VehicleDetailItemStyled>
-              {this.props.fuel}
-            </VehicleDetailItemStyled>
-            <VehicleDetailItemStyled>
-              {this.props.transmission}
-            </VehicleDetailItemStyled>
-            <VehicleDetailItemStyled>
-              {this.props.type}
-            </VehicleDetailItemStyled>
-            <VehicleDetailItemStyled>
-              {this.props.air_conditioning}
-            </VehicleDetailItemStyled>
+            <span>{this.props.fuel}</span>
+            <span>{this.props.transmission}</span>
+            <span>{this.props.type}</span>
+            <span>{this.props.air_conditioning}</span>
           </VehicleDetailStyled>
-        </VehicleInfoStyled>
-        <RentalStyled>
+        </VehicleInfo>
+        <RentalInfo>
           <Title color={theme.secondary} margin={"15px 30px 5px 30px"} medium>
             Rental Amount
           </Title>
@@ -184,19 +133,17 @@ class Vehicle extends Component {
             <TitlePriceBigStyled>{this.props.amount}</TitlePriceBigStyled>
           </ParagraphPriceStyled>
           <TitlePriceStyled>up to 10x</TitlePriceStyled>
-          <ContainerButtonRentStyled>
+          <ContainerButtonRent>
             <ArrowRightStyled />
-            <theme.ContainerFlex
-              style={{ justifyContent: "center", flexGrow: "1" }}
-            >
-              <ButtonRentalStyled>
-                <TitleRentalButtonStyled>Rent</TitleRentalButtonStyled>
-              </ButtonRentalStyled>
-            </theme.ContainerFlex>
-          </ContainerButtonRentStyled>
+            <div style={{ justifyContent: "center", flexGrow: "1" }}>
+              <ButtonPrimary>
+                <span>Rent</span>
+              </ButtonPrimary>
+            </div>
+          </ContainerButtonRent>
           <TitleRentalSmallStyled>Taxes included</TitleRentalSmallStyled>
-        </RentalStyled>
-      </VehicleStyled>
+        </RentalInfo>
+      </Container>
     );
   }
 }

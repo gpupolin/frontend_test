@@ -16,6 +16,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
+import VehicleFilter from "../components/VehicleFilter";
 
 const store = createStore(
   combineReducers(reducers),
@@ -44,4 +45,5 @@ storiesOf("Aluguel de Carros", module)
       air_conditioning={"Ar"}
     />
   ))
-  .add("ordenação", () => <VehicleSort />);
+  .add("ordenação", () => <VehicleSort />)
+  .add("filtro", () => <VehicleFilter />);

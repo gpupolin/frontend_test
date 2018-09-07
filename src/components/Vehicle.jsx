@@ -103,6 +103,7 @@ const ContainerTitleIcon = styled.p`
   align-items: flex-start;
   margin-top: 15px;
   flex-grow:1;
+  text-transform: uppercase;
 `;
 
 class Vehicle extends Component {
@@ -123,15 +124,15 @@ class Vehicle extends Component {
             </div>
           </div>
           <VehicleDetail>
-            <Title small color={"#3658a4"}>{this.props.fuel}</Title>
-            <Title small color={"#3658a4"}>{this.props.transmission}</Title>
-            <Title small color={"#3658a4"}>{this.props.type}</Title>
-            <Title small color={"#3658a4"}>{this.props.air_conditioning}</Title>
+            <Title secondary small color={"#3658a4"}>{this.props.fuel}</Title>
+            <Title secondary small color={"#3658a4"}>{this.props.transmission}</Title>
+            <Title secondary small color={"#3658a4"}>{this.props.type}</Title>
+            <Title secondary small color={"#3658a4"}>{this.props.air_conditioning}</Title>
           </VehicleDetail>
         </VehicleInfo>
         <RentalInfo>
           <p styled={{ margin: "15px 30px 5px 30px" }}>
-            <Title color={theme.secondary} medium>
+            <Title upper color={theme.secondary} medium>
               Rental Amount
             </Title>
           </p>

@@ -19,6 +19,9 @@ const Container = styled.div`
 const InputField = styled.div`
   display: flex;
   flex-flow: column wrap;
+  & label {
+    text-transform: uppercase;
+  }
 `;
 
 const ContainerDiscount = styled.div`
@@ -26,10 +29,16 @@ const ContainerDiscount = styled.div`
   
   & div:first-child {
     background-color: #69b42e;
+    text-transform: uppercase;
+    padding: 5px;
+    line-height: 0.50;
   }
 
   & div:not(:first-child) {
     background-color: #FFF1AC;
+    border: 1px solid #69b42e;
+    border-top: none;
+    padding: 5px;
   }
 `
 
@@ -52,7 +61,7 @@ class VehicleFilter extends Component {
           <div>
             <label>
               <input type="checkbox" />{" "}
-              <Title secondary color={theme.primary} extrasmall>
+              <Title secondary color={"#3658a4"} bold small>
                 Devolver o carro em outro local
               </Title>
             </label>
@@ -94,13 +103,13 @@ class VehicleFilter extends Component {
           <div>
             <label>
               <input type="checkbox" />
-              <Title secondary extrasmall>
+              <Title secondary small>
                 Incluir voo
               </Title>
             </label>
             <label>
               <input type="checkbox" />
-              <Title secondary extrasmall>
+              <Title secondary small>
                 Incluir hotel
               </Title>
             </label>

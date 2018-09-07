@@ -11,7 +11,7 @@ import CarRentalScreen from "../containers/CarRentalScreen";
 
 import Vehicle from "../components/Vehicle";
 import VehicleSort from "../components/VehicleSort";
-
+import VehiclePaginate from "../components/VehiclePaginate";
 import VehicleFilter from "../components/VehicleFilter";
 
 const store = createStore(
@@ -40,4 +40,5 @@ storiesOf("Aluguel de Carros", module)
     />
   ))
   .add("ordenação", () => <VehicleSort />)
-  .add("filtro", () => <VehicleFilter />);
+  .add("filtro", () => <VehicleFilter />)
+  .add("paginação", () => <VehiclePaginate />);

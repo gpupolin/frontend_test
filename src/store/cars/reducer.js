@@ -9,7 +9,7 @@ const carstate = Record({
   data: List(),
   sort: "lowest_price",
   page: 0,
-  countByPage: 10
+  limit: 10
 });
 
 const initialState = carstate({
@@ -17,7 +17,7 @@ const initialState = carstate({
   data: List(),
   sort: "lowest_price",
   page: 0,
-  countByPage: 10
+  limit: 10
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -50,8 +50,16 @@ export function getCars(state) {
         ? sortByLowestPrice
         : sortByBiggestPrice
     )
-    .slice(state.cars.page, state.cars.page + state.cars.countByPage)
+    .slice(state.cars.page, state.cars.page + state.cars.limit)
     .toJS();
+}
+
+export function getCarsCount(state) {
+  return state.cars.get("data").size;
+}
+
+export function getLimit(state) {
+  return state.cars.get("limit");
 }
 
 const sortByLowestPrice = (a, b) =>

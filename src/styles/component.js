@@ -10,61 +10,15 @@ export const ButtonPrimary = styled.button`
   padding: 12px 32px 16px 32px;
   border: 1px solid #3658a4;
   cursor: pointer;
+  box-shadow: 0 4px 2px -2px black;
 
   & span {
     color: #ffffff;
     text-transform: uppercase;
-    ${theme.fontArialMedium} font-weight: bold;
+    font-weight: bold;
     text-align: center;
   }
 `;
-
-// export const Title = styled.p`
-//   ${theme.fontOswald}
-//   color: ${props => props.color || theme.primary};
-//   text-transform: uppercase;
-//   white-space: nowrap;
-//   ${props =>
-//     props.large &&
-//     css`
-//       ${theme.fontOswaldLarge};
-//     `}
-//   ${props =>
-//     props.medium &&
-//     css`
-//       ${theme.fontOswaldMedium};
-//     `}
-//   ${props =>
-//     props.margin &&
-//     css`
-//       margin: ${props => props.margin};
-//     `}
-// `;
-
-// export const TitleIcon = styled(Title)`
-//   display: flex;
-//   justify-content: space-between;
-//   padding-right: 15px;
-//   align-items: center;
-//   margin-top: 15px;
-// `;
-
-// export const TitlePriceStyled = styled.span`
-//   ${theme.fontArialMedium} font-weight: bold;
-//   text-align: center;
-//   color: #263c70;
-// `;
-
-// export const TitleRentalSmallStyled = styled.span`
-//   ${theme.fontArialSmall} text-align: center;
-//   color: #635109;
-// `;
-
-// export const TitlePriceBigStyled = styled(TitlePriceStyled)`
-//   font-size: 21px;
-//   line-height: 0.67;
-// `;
-
 
 export const Icon = styled(FontAwesomeIcon)`
   color: ${props => props.color || "gray"};
@@ -78,8 +32,12 @@ export const Title = styled.span`
   letter-spacing: normal;
   font-size: 14px;
   line-height: 1;
-  text-transform: uppercase;
   color: ${props => props.color || theme.primary};
+  ${props =>
+    props.upper &&
+    css`
+      text-transform: uppercase;
+    `};
   ${props =>
     props.secondary &&
     css`

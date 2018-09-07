@@ -30,6 +30,9 @@ export default function reduce(state = initialState, action = {}) {
         .set("data", state.data.merge(action.payload))
         .set("isFetching", false);
     }
+    case types.CHANGED_PAGE: {
+      return state.set("page", action.page);
+    }
     default:
       return state;
   }
@@ -41,7 +44,6 @@ export function isFetching(state) {
   return state.cars.get("isFetching");
 }
 
-//TODO: Implementar a paginação
 export function getCars(state) {
   return state.cars
     .get("data")
@@ -50,7 +52,10 @@ export function getCars(state) {
         ? sortByLowestPrice
         : sortByBiggestPrice
     )
-    .slice(state.cars.page, state.cars.page + state.cars.limit)
+    .slice(
+      Math.ceil(state.cars.get("page") * state.cars.get("limit")),
+      Math.ceil(state.cars.get("page") * state.cars.get("limit") + state.cars.get("limit"))
+    )
     .toJS();
 }
 

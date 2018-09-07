@@ -4,6 +4,10 @@
 import AmadeusService from "../../services/amadeus";
 import * as types from "./actionTypes";
 
+export function changePage(page) {
+  return { type: types.CHANGED_PAGE, ...{ page: page.selected } };
+}
+
 export function getCarsRental() {
   return async (dispatch, getState) => {
     dispatch({ type: types.REQUESTED_DATA });
@@ -21,7 +25,7 @@ export function getCarsRental() {
                 ...items.provider,
                 ...items.location,
                 ...items.address,
-                ...{airport: items.airport}
+                ...{ airport: items.airport }
               };
             });
           })

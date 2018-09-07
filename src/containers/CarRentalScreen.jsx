@@ -26,8 +26,18 @@ const ContainerVehicleList = styled.div`
 /** Componente responsável pelo aluguel de carros. É um smart component, então possui
  * conhecimento do estado da aplicação */
 class CarRentalScreen extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handlePageClick = this.handlePageClick.bind(this);
+  }
+
   componentDidMount() {
     this.props.dispatch(carsActions.getCarsRental());
+  }
+
+  handlePageClick(page) {
+    this.props.dispatch(carsActions.changePage(page));
   }
 
   render() {
@@ -43,6 +53,7 @@ class CarRentalScreen extends Component {
             isFetching={this.props.isFetching}
             count={this.props.count}
             limit={this.props.limit}
+            onPageClick={this.handlePageClick}
           />
         </ContainerVehicleList>
       </Container>

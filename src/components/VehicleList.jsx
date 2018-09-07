@@ -8,7 +8,7 @@ class VehicleList extends Component {
 
     return (
       <Fragment>
-        {this.props.cars.map((c, i) => {
+        {this.props.cars && this.props.cars.map((c, i) => {
           return (
             <Vehicle
               key={i}
@@ -16,7 +16,7 @@ class VehicleList extends Component {
               name={`Car ${c.vehicle_info.category} ${
                 c.vehicle_info.air_conditioning ? "with Air" : "without Air"
               }`}
-              photo={c.images.length > 0 ? c.images[0].url : ""}
+              photo={c.images && c.images.length > 0 ? c.images[0].url : ""}
               amount={c.estimated_total.amount}
               currency={c.estimated_total.currency}
               fuel={c.vehicle_info.fuel}
@@ -25,7 +25,7 @@ class VehicleList extends Component {
             />
           );
         })}
-        <VehiclePaginate count={this.props.count} limit={this.props.limit} />
+        <VehiclePaginate onPageClick={this.props.onPageClick} count={this.props.count} limit={this.props.limit} />
       </Fragment>
     );
   }

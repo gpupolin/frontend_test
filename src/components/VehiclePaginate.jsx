@@ -16,7 +16,7 @@ const Container = styled.div`
 
   & li {
     display: inline-block;
-    padding: 0 30px;
+    padding: 0 20px;
   }
   & .break a {
     cursor: default;
@@ -24,18 +24,24 @@ const Container = styled.div`
 `;
 
 class VehiclePaginate extends Component {
+  constructor(props) {
+    super(props);
+
+//    this.handlePageClick = this.handlePageClick.bind(this);
+  }
+
   render() {
     return (
       <Container>
         <ReactPaginate
           previousLabel={"<"}
           nextLabel={">"}
-          breakLabel={<a href="">...</a>}
+          // breakLabel={"..."}
           breakClassName={"break-me"}
           pageCount={Math.ceil(this.props.count / this.props.limit)}
           marginPagesDisplayed={2}
           pageRangeDisplayed={5}
-          //onPageChange={this.handlePageClick}
+          onPageChange={this.props.onPageClick}
           containerClassName={"pagination"}
           subContainerClassName={"pages pagination"}
           activeClassName={"active"}

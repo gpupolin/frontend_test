@@ -5,7 +5,7 @@ import * as theme from "../styles/theme";
 
 //TODO: Ajustar css
 //TODO: Lifting state up
-//TODO: 
+//TODO:
 
 const SelectStyled = {
   option: (styles, state) => ({
@@ -48,6 +48,10 @@ const optionsSort = [
 ];
 const optionsCurrency = [{ value: "USD", label: "USD" }];
 
+const Container = styled.div`
+  display: flex;
+`;
+
 class VehicleSort extends Component {
   constructor(props) {
     super(props);
@@ -82,7 +86,7 @@ class VehicleSort extends Component {
 
   render() {
     return (
-      <theme.ContainerFlex>
+      <Container>
         <Select
           onChange={this.onChangeItemByPages}
           value={{
@@ -113,7 +117,7 @@ class VehicleSort extends Component {
           styles={SelectStyled}
           options={optionsCurrency}
         />
-      </theme.ContainerFlex>
+      </Container>
     );
   }
 }

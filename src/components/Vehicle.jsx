@@ -1,16 +1,11 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import * as theme from "../styles/theme";
 import {
   ButtonPrimary,
   Title,
-  TitleIcon,
-  TitlePriceBigStyled,
-  TitlePriceStyled,
-  TitleRentalButtonStyled,
-  TitleRentalSmallStyled
+  Icon
 } from "../styles/component";
 
 //TODO: Organizar os estilos
@@ -31,6 +26,10 @@ const VehicleInfo = styled.div`
   border: solid 1px #cccccc;
   border-right: none;
   width: 100%;
+
+  & div {
+    display: flex;
+  }
 `;
 
 const RentalInfo = styled.div`
@@ -38,13 +37,14 @@ const RentalInfo = styled.div`
   background-color: #ffdc2c;
   flex-flow: column wrap;
   align-items: center;
+  min-width: 160px;
 `;
 
-const VehicleDetailStyled = styled(theme.ContainerFlex)`
-  ${theme.fontArialSmall} border-top: solid 1px #e0e0e0;
+const VehicleDetail = styled.div`
+  display: flex;
+  border-top: solid 1px #e0e0e0;
   padding: 0 15px 15px 15px;
   text-align: left;
-  color: #3658a4;
   display: flex;
   flex-flow: row wrap;
 
@@ -54,7 +54,8 @@ const VehicleDetailStyled = styled(theme.ContainerFlex)`
   }
 `;
 
-const VehicleImageAndCompanyStyled = styled(theme.ContainerFlex)`
+const VehicleImage = styled.div`
+  display: flex;
   flex-flow: column wrap;
   & span {
     text-align: right;
@@ -74,7 +75,7 @@ const ParagraphPriceStyled = styled.p`
   margin: 10px 0 0 0;
 `;
 
-const ArrowRightStyled = styled.div`
+const ArrowRight = styled.div`
   width: 0;
   height: 0;
   border-top: 10px solid transparent;
@@ -95,8 +96,13 @@ const ContainerButtonRent = styled.div`
   }
 `;
 
-const FontAwesomeIconStyled = styled(FontAwesomeIcon)`
-  color: ${props => props.color || "gray"};
+const ContainerTitleIcon = styled.p`
+  display: flex;
+  justify-content: space-between;
+  padding-right: 15px;
+  align-items: flex-start;
+  margin-top: 15px;
+  flex-grow:1;
 `;
 
 class Vehicle extends Component {
@@ -104,44 +110,45 @@ class Vehicle extends Component {
     return (
       <Container>
         <VehicleInfo>
-          <theme.ContainerFlex>
-            <VehicleImageAndCompanyStyled>
+          <div>
+            <VehicleImage>
               <span>{this.props.company}</span>
               <img src={this.props.photo} />
-            </VehicleImageAndCompanyStyled>
+            </VehicleImage>
             <div style={{ flexGrow: 1 }}>
-              <TitleIcon large>
-                {this.props.name} <FontAwesomeIconStyled icon={faHeart} />
-              </TitleIcon>
-
+              <ContainerTitleIcon>
+                <Title large>{this.props.name}</Title> <Icon icon={faHeart} />
+              </ContainerTitleIcon>
               {/* <p>- Mais infos</p> */}
             </div>
-          </theme.ContainerFlex>
-          <VehicleDetailStyled>
-            <span>{this.props.fuel}</span>
-            <span>{this.props.transmission}</span>
-            <span>{this.props.type}</span>
-            <span>{this.props.air_conditioning}</span>
-          </VehicleDetailStyled>
+          </div>
+          <VehicleDetail>
+            <Title small color={"#3658a4"}>{this.props.fuel}</Title>
+            <Title small color={"#3658a4"}>{this.props.transmission}</Title>
+            <Title small color={"#3658a4"}>{this.props.type}</Title>
+            <Title small color={"#3658a4"}>{this.props.air_conditioning}</Title>
+          </VehicleDetail>
         </VehicleInfo>
         <RentalInfo>
-          <Title color={theme.secondary} margin={"15px 30px 5px 30px"} medium>
-            Rental Amount
-          </Title>
+          <p styled={{ margin: "15px 30px 5px 30px" }}>
+            <Title color={theme.secondary} medium>
+              Rental Amount
+            </Title>
+          </p>
           <ParagraphPriceStyled>
-            <TitlePriceStyled>{this.props.currency} </TitlePriceStyled>
-            <TitlePriceBigStyled>{this.props.amount}</TitlePriceBigStyled>
+            <Title bold secondary>{this.props.currency} </Title>
+            <Title bold large secondary>{this.props.amount}</Title>
           </ParagraphPriceStyled>
-          <TitlePriceStyled>up to 10x</TitlePriceStyled>
+          <Title bold secondary>up to 10x</Title>
           <ContainerButtonRent>
-            <ArrowRightStyled />
+            <ArrowRight />
             <div style={{ justifyContent: "center", flexGrow: "1" }}>
               <ButtonPrimary>
                 <span>Rent</span>
               </ButtonPrimary>
             </div>
           </ContainerButtonRent>
-          <TitleRentalSmallStyled>Taxes included</TitleRentalSmallStyled>
+          <Title secondary color={theme.secondary} small>Taxes included</Title>
         </RentalInfo>
       </Container>
     );

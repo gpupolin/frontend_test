@@ -4,11 +4,22 @@ import { connect } from "react-redux";
 import * as carsSelectors from "../store/cars/reducer";
 import * as carsActions from "../store/cars/actions";
 
+import styled, { css } from "styled-components";
 import * as theme from "../styles/theme";
 
 import Vehicle from "../components/Vehicle";
 import VehicleSort from "../components/VehicleSort";
 import VehicleFilter from "../components/VehicleFilter";
+
+const Container = styled.div`
+  display: flex;
+  padding-top: 35px;
+  align-items: baseline;
+`;
+
+const ContainerVehicleList = styled.div`
+  width: 100%;
+`;
 
 /** Componente responsável pelo aluguel de carros. É um smart component, então possui
  * conhecimento do estado da aplicação */
@@ -21,11 +32,9 @@ class CarRentalScreen extends Component {
     //if (this.props.isFetching) return <h1>Carregando...</h1>;
 
     return (
-      <theme.ContainerFlex
-        style={{ paddingTop: "35px", alignItems: "baseline" }}
-      >
+      <Container>
         <VehicleFilter />
-        <div style={{ width: "100%" }}>
+        <ContainerVehicleList>
           <VehicleSort />
           {this.props.isFetching && <h1>Carregando...</h1>}
           {!this.props.isFetching &&
@@ -45,8 +54,8 @@ class CarRentalScreen extends Component {
                 />
               );
             })}
-        </div>
-      </theme.ContainerFlex>
+        </ContainerVehicleList>
+      </Container>
     );
   }
 }

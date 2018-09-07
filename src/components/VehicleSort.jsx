@@ -43,8 +43,8 @@ const optionsItemByPages = [
   { value: 100, label: "100" }
 ];
 const optionsSort = [
-  { value: 10, label: "Menor preço" },
-  { value: 50, label: "Maior preço" }
+  { value: "lowest_price", label: "Menor preço" },
+  { value: "biggest_price", label: "Maior preço" }
 ];
 const optionsCurrency = [{ value: "USD", label: "USD" }];
 
@@ -71,11 +71,17 @@ class VehicleSort extends Component {
     this.setState({
       optionItemByPage: option
     });
+    if (typeof this.props.onChangeItemByPages === "function") {
+      this.props.onChangeItemByPages(option.value);
+    }
   }
   onChangeSort(option) {
     this.setState({
       optionSort: option
     });
+    if (typeof this.props.onChangeSort === "function") {
+      this.props.onChangeSort(option.value);
+    }
   }
 
   onChangeCurrency(option) {

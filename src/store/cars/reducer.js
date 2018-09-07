@@ -33,6 +33,12 @@ export default function reduce(state = initialState, action = {}) {
     case types.CHANGED_PAGE: {
       return state.set("page", action.page);
     }
+    case types.CHANGED_LIMIT: {
+      return state.set("limit", action.limit).set("page", 0);
+    }
+    case types.CHANGED_SORT: {
+      return state.set("sort", action.sort);
+    }
     default:
       return state;
   }
@@ -54,7 +60,10 @@ export function getCars(state) {
     )
     .slice(
       Math.ceil(state.cars.get("page") * state.cars.get("limit")),
-      Math.ceil(state.cars.get("page") * state.cars.get("limit") + state.cars.get("limit"))
+      Math.ceil(
+        state.cars.get("page") * state.cars.get("limit") +
+          state.cars.get("limit")
+      )
     )
     .toJS();
 }

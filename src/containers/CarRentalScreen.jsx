@@ -30,6 +30,8 @@ class CarRentalScreen extends Component {
     super(props);
 
     this.handlePageClick = this.handlePageClick.bind(this);
+    this.handleChangeItemByPages = this.handleChangeItemByPages.bind(this);
+    this.handleChangeSort = this.handleChangeSort.bind(this);
   }
 
   componentDidMount() {
@@ -40,6 +42,14 @@ class CarRentalScreen extends Component {
     this.props.dispatch(carsActions.changePage(page));
   }
 
+  handleChangeItemByPages(quantity) {
+    this.props.dispatch(carsActions.changeLimit(quantity));
+  }
+
+  handleChangeSort(sort) {
+    this.props.dispatch(carsActions.changeSort(sort));
+  }
+
   render() {
     //if (this.props.isFetching) return <h1>Carregando...</h1>;
 
@@ -47,7 +57,9 @@ class CarRentalScreen extends Component {
       <Container>
         <VehicleFilter />
         <ContainerVehicleList>
-          <VehicleSort />
+          <VehicleSort onChangeItemByPages={this.handleChangeItemByPages}
+            onChangeSort={this.handleChangeSort}
+          />
           <VehicleList
             cars={this.props.cars}
             isFetching={this.props.isFetching}

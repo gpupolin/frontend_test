@@ -4,6 +4,14 @@
 import AmadeusService from "../../services/amadeus";
 import * as types from "./actionTypes";
 
+export function changeSort(sort) { 
+  return { type: types.CHANGED_SORT, ...{ sort: sort } };
+}
+
+export function changeLimit(quantity) { 
+  return { type: types.CHANGED_LIMIT, ...{ limit: quantity } };
+}
+
 export function changePage(page) {
   return { type: types.CHANGED_PAGE, ...{ page: page.selected } };
 }

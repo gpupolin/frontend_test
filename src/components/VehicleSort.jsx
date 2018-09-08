@@ -43,8 +43,8 @@ const optionsItemByPages = [
   { value: 100, label: "100" }
 ];
 const optionsSort = [
-  { value: "lowest_price", label: "Menor preço" },
-  { value: "biggest_price", label: "Maior preço" }
+  { value: "lowest_price", label: "Lowest price" },
+  { value: "biggest_price", label: "Biggest price" }
 ];
 const optionsCurrency = [{ value: "USD", label: "USD" }];
 
@@ -97,7 +97,7 @@ class VehicleSort extends Component {
           onChange={this.onChangeItemByPages}
           value={{
             value: this.state.optionItemByPage.value,
-            label: "ITENS POR PÁGINA: " + this.state.optionItemByPage.label
+            label: "ITENS BY PAGE: " + this.state.optionItemByPage.label
           }}
           isSearchable={false}
           styles={SelectStyled}
@@ -107,7 +107,7 @@ class VehicleSort extends Component {
           onChange={this.onChangeSort}
           value={{
             value: this.state.optionSort.value,
-            label: "ORDENAR POR: " + this.state.optionSort.label
+            label: "SORT BY: " + this.state.optionSort.label
           }}
           isSearchable={false}
           styles={SelectStyled}
@@ -117,7 +117,7 @@ class VehicleSort extends Component {
           onChange={this.onChangeCurrency}
           value={{
             value: this.state.optionCurrency.value,
-            label: "MOEDA: " + this.state.optionCurrency.label
+            label: "CURRENCY: " + this.state.optionCurrency.label
           }}
           isSearchable={false}
           styles={SelectStyled}

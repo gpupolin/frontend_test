@@ -5,7 +5,11 @@ class AmadeusService {
   async getCarRentalAirportSearch(filter) {
     const url = `${API}/cars/search-airport?apikey=${API_KEY}&location=${
       filter && filter.pickup ? filter.pickup : "NCE"
-    }&pick_up=2018-12-07&drop_off=2018-12-08`;
+    }&pick_up=${
+      filter && filter.pickupDate ? filter.pickupDate : "2018-12-07"
+    }&drop_off=${
+      filter && filter.returnDate ? filter.returnDate : "2018-12-08"
+    }`;
 
     const response = await fetch(url, {
       method: "GET",

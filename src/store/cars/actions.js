@@ -18,6 +18,7 @@ export function changePage(page) {
 
 export function getAirports(type, term) {
   return async (dispatch, getState) => {
+
     const data = await AmadeusService.getAirport(term);
 
     dispatch({
@@ -33,6 +34,7 @@ export function getAirports(type, term) {
 export function getCarsRental(filter) {
   return async (dispatch, getState) => {
     dispatch({ type: types.REQUESTED_DATA });
+    console.log(filter);
     const data = await AmadeusService.getCarRentalAirportSearch(filter);
 
     dispatch({

@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import * as theme from "../styles/theme";
 import styled, { css } from "styled-components";
-import { ButtonPrimary, Title } from "../styles/component";
+import { ButtonPrimary, Title, Icon } from "../styles/component";
+import { faCalendar, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
-import AsyncSelect from "react-select/lib/Async";
+import DateTimePicker from "./DateTimePicker";
+
+import moment from "moment";
+
 import Select from "react-select";
 
 const SelectStyled = {
@@ -89,6 +93,16 @@ const ContainerDiscount = styled.div`
   }
 `;
 
+const InputDateTime = styled.div`
+  display: flex;
+  border: 1px solid black;
+  background: white;
+  padding: 5px;
+  & .react-datepicker__input-container > input {
+    border: none;
+  }
+`;
+
 class VehicleFilter extends Component {
   constructor(props) {
     super(props);
@@ -96,12 +110,44 @@ class VehicleFilter extends Component {
     this.state = {
       anotherLocation: false,
       optionToPickup: null,
-      optionToReturn: null
+      optionToReturn: null,
+      pickupDate: moment(),
+      pickupTime: moment(),
+      returnDate: moment(),
+      returnTime: moment()
     };
 
     this.onChangePickup = this.onChangePickup.bind(this);
     this.onChangeReturn = this.onChangeReturn.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleChangePickupDate = this.handleChangePickupDate.bind(this);
+    this.handleChangePickupTime = this.handleChangePickupTime.bind(this);
+    this.handleChangeReturnDate = this.handleChangeReturnDate.bind(this);
+    this.handleChangeReturnTime = this.handleChangeReturnTime.bind(this);
+  }
+
+  handleChangePickupDate(date) {
+    this.setState({
+      pickupDate: date
+    });
+  }
+
+  handleChangePickupTime(time) {
+    this.setState({
+      pickupTime: time
+    });
+  }
+
+  handleChangeReturnDate(date) {
+    this.setState({
+      returnDate: date
+    });
+  }
+
+  handleChangeReturnTime(time) {
+    this.setState({
+      returnTime: time
+    });
   }
 
   onChangePickup(option) {
@@ -117,10 +163,20 @@ class VehicleFilter extends Component {
   }
 
   handleClick(evt) {
-    if(typeof this.props.onSearch === "function") {
+    if (typeof this.props.onSearch === "function") {
       this.props.onSearch({
-        pickup: this.state.optionToPickup ? this.state.optionToPickup.value : null,
-        return: this.state.optionToReturn ? this.state.optionToReturn.value : null 
+        pickup: this.state.optionToPickup
+          ? this.state.optionToPickup.value
+          : null,
+        return: this.state.optionToReturn
+          ? this.state.optionToReturn.value
+          : null,
+        pickupDate: `${this.state.pickupDate.format(
+          "YYYY-MM-DD"
+        )}T${this.state.pickupTime.format("HH:MM")}:00Z`,
+        returnDate: `${this.state.returnDate.format(
+          "YYYY-MM-DD"
+        )}T${this.state.returnTime.format("HH:MM")}:00Z`
       });
     }
   }
@@ -185,7 +241,12 @@ class VehicleFilter extends Component {
                 Pickup date
               </Title>
             </label>
-            <input type="text" />
+            <DateTimePicker
+              date={this.state.pickupDate}
+              time={this.state.pickupTime}
+              onChangeDate={this.handleChangePickupDate}
+              onChangeTime={this.handleChangePickupTime}
+            />
           </InputField>
           <InputField>
             <label>
@@ -193,7 +254,12 @@ class VehicleFilter extends Component {
                 Return date
               </Title>
             </label>
-            <input type="text" />
+            <DateTimePicker
+              date={this.state.returnDate}
+              time={this.state.returnTime}
+              onChangeDate={this.handleChangeReturnDate}
+              onChangeTime={this.handleChangeReturnTime}
+            />
           </InputField>
         </div>
         <ContainerDiscount>

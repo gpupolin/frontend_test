@@ -13,6 +13,8 @@ import Vehicle from "../components/Vehicle";
 import VehicleSort from "../components/VehicleSort";
 import VehiclePaginate from "../components/VehiclePaginate";
 import VehicleFilter from "../components/VehicleFilter";
+import DateTimePicker from "../components/DateTimePicker";
+import moment from "moment";
 
 const store = createStore(
   combineReducers(reducers),
@@ -41,4 +43,6 @@ storiesOf("Aluguel de Carros", module)
   ))
   .add("ordenação", () => <VehicleSort />)
   .add("filtro", () => <VehicleFilter />)
-  .add("paginação", () => <VehiclePaginate />);
+  .add("paginação", () => <VehiclePaginate />)
+  .add("datetimepicker", () => <DateTimePicker date={moment()} time={moment()} />)
+  ;

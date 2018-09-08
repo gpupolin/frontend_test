@@ -1,7 +1,7 @@
 /** Toda manipulação do estado acontece dentros dos reducers. Aqui nâo deve ocorrer nenhum
  * efeito colateral.
  */
-import { Record, List } from "immutable";
+import { Record, List, fromJS } from "immutable";
 import * as types from "./actionTypes";
 
 const carstate = Record({
@@ -9,7 +9,9 @@ const carstate = Record({
   data: List(),
   sort: "lowest_price",
   page: 0,
-  limit: 10
+  limit: 10,
+  airportsToPickup: List(),
+  airportsToReturn: List()
 });
 
 const initialState = carstate({
@@ -17,7 +19,9 @@ const initialState = carstate({
   data: List(),
   sort: "lowest_price",
   page: 0,
-  limit: 10
+  limit: 10,
+  airportsToPickup: List(),
+  airportsToReturn: List()
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -27,7 +31,8 @@ export default function reduce(state = initialState, action = {}) {
     }
     case types.FETCHED_DATA: {
       return state
-        .set("data", state.data.merge(action.payload))
+        .set("data", fromJS(action.payload))
+        .set("page", 0)
         .set("isFetching", false);
     }
     case types.CHANGED_PAGE: {
@@ -38,6 +43,12 @@ export default function reduce(state = initialState, action = {}) {
     }
     case types.CHANGED_SORT: {
       return state.set("sort", action.sort);
+    }
+    case types.FETCHED_AIRPORTS_PICKUP_DATA: {
+      return state.set("airportsToPickup", fromJS(action.payload));
+    }
+    case types.FETCHED_AIRPORTS_RETURN_DATA: {
+      return state.set("airportsToReturn", fromJS(action.payload));
     }
     default:
       return state;
@@ -74,6 +85,14 @@ export function getCarsCount(state) {
 
 export function getLimit(state) {
   return state.cars.get("limit");
+}
+
+export function getAirportsToPickup(state) {
+  return state.cars.get("airportsToPickup").toJS();
+}
+
+export function getAirportsToReturn(state) {
+  return state.cars.get("airportsToReturn").toJS();
 }
 
 const sortByLowestPrice = (a, b) =>

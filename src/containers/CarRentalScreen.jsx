@@ -32,6 +32,8 @@ class CarRentalScreen extends Component {
     this.handlePageClick = this.handlePageClick.bind(this);
     this.handleChangeItemByPages = this.handleChangeItemByPages.bind(this);
     this.handleChangeSort = this.handleChangeSort.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
@@ -50,14 +52,31 @@ class CarRentalScreen extends Component {
     this.props.dispatch(carsActions.changeSort(sort));
   }
 
+  handleInputChange(type, value) {
+    //const inputValue = value.replace(/\W/g, '')
+    if (value === "") return;
+    this.props.dispatch(carsActions.getAirports(type, value));
+  }
+
+  handleSearch(filter){
+    this.props.dispatch(carsActions.getCarsRental(filter));
+  }
+
   render() {
     //if (this.props.isFetching) return <h1>Carregando...</h1>;
 
     return (
       <Container>
-        <VehicleFilter />
+        <VehicleFilter
+          airportsToPickup={this.props.airportsToPickup}
+          airportsToReturn={this.props.airportsToReturn}
+          onInputChangePickup={(value) => this.handleInputChange("pickup", value)}
+          onInputChangeReturn={(value) => this.handleInputChange("return", value)}
+          onSearch={this.handleSearch}
+        />
         <ContainerVehicleList>
-          <VehicleSort onChangeItemByPages={this.handleChangeItemByPages}
+          <VehicleSort
+            onChangeItemByPages={this.handleChangeItemByPages}
             onChangeSort={this.handleChangeSort}
           />
           <VehicleList
@@ -78,7 +97,9 @@ function mapStateToProps(state) {
     cars: carsSelectors.getCars(state),
     isFetching: carsSelectors.isFetching(state),
     count: carsSelectors.getCarsCount(state),
-    limit: carsSelectors.getLimit(state)
+    limit: carsSelectors.getLimit(state),
+    airportsToPickup: carsSelectors.getAirportsToPickup(state),
+    airportsToReturn: carsSelectors.getAirportsToReturn(state)
   };
 }
 

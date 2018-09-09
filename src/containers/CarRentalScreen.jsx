@@ -8,16 +8,14 @@ import styled, { css } from "styled-components";
 import * as theme from "../styles/theme";
 import { media } from "../styles/utils";
 
-import Vehicle from "../components/Vehicle";
 import VehicleSort from "../components/VehicleSort";
 import VehicleFilter from "../components/VehicleFilter";
-import VehiclePaginate from "../components/VehiclePaginate";
 import VehicleList from "../components/VehicleList";
 
 const Container = styled.div`
   display: flex;
   padding-top: 35px;
-  align-items: baseline;
+  align-items: flex-start;
 
   & .hide-on-desktop-and-up {
     display: none;
@@ -72,7 +70,7 @@ class CarRentalScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(carsActions.getCarsRental());
+    //this.props.dispatch(carsActions.getCarsRental());
   }
 
   handlePageClick(page) {
@@ -110,11 +108,16 @@ class CarRentalScreen extends Component {
           onSearch={this.handleSearch}
         />
         <ContainerVehicleList>
-          <VehicleSort
-            onChangeItemByPages={this.handleChangeItemByPages}
-            onChangeSort={this.handleChangeSort}
-          />
+          {this.props.cars &&
+            this.props.cars.length > 0 &&
+            !this.props.isFetching && (
+              <VehicleSort
+                onChangeItemByPages={this.handleChangeItemByPages}
+                onChangeSort={this.handleChangeSort}
+              />
+            )}
           <VehicleList
+            someSearch={this.props.someSearch}
             cars={this.props.cars}
             isFetching={this.props.isFetching}
             count={this.props.count}
@@ -134,7 +137,8 @@ function mapStateToProps(state) {
     count: carsSelectors.getCarsCount(state),
     limit: carsSelectors.getLimit(state),
     airportsToPickup: carsSelectors.getAirportsToPickup(state),
-    airportsToReturn: carsSelectors.getAirportsToReturn(state)
+    airportsToReturn: carsSelectors.getAirportsToReturn(state),
+    someSearch: carsSelectors.getSomeSearch(state)
   };
 }
 

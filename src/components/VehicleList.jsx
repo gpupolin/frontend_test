@@ -1,13 +1,27 @@
 import React, { Component, Fragment } from "react";
 import VehiclePaginate from "./VehiclePaginate";
 import Vehicle from "./Vehicle";
+import Loading from "./Loading";
+import styled from "styled-components";
+
+const ContainerNoSearch = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
 
 class VehicleList extends Component {
   render() {
-    if (this.props.isFetching) return <h1>Searching...</h1>;
+    if (this.props.isFetching) return <Loading />;
 
-    if (!this.props.cars || this.props.cars.length <= 0)
-      return <h1>No cars found</h1>;
+    if (!this.props.someSearch)
+      return <ContainerNoSearch><h1>To get started, select a pickup location 🙂</h1></ContainerNoSearch>;
+
+    if(this.props.cars.length <= 0)
+    return <ContainerNoSearch><h1>No cars found 😦</h1></ContainerNoSearch>;
 
     if (this.props.cars && this.props.cars.length > 0)
       return (

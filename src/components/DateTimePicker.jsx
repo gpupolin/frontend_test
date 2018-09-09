@@ -3,6 +3,7 @@ import styled, { css, ThemeProvider } from "styled-components";
 import DatePicker from "react-datepicker";
 import { Icon } from "../styles/component";
 import { faCalendar, faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import moment from "moment";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -42,6 +43,7 @@ class DateTimePicker extends Component {
           customInput={<DateInput />}
           selected={this.props.date}
           onChange={this.props.onChangeDate}
+          filterDate={(date) => date >= moment()}
         />
         <span>|</span>
         <DatePicker

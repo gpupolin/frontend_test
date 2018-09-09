@@ -55,9 +55,7 @@ const Container = styled.div`
     min-width: 0;
     margin-left: 0;
     margin-right: 0;
-  `} 
-  
-  & div:first-child {
+  `} & div:first-child {
     flex-flow: column;
   }
 `;
@@ -94,15 +92,12 @@ const ContainerDiscount = styled.div`
   }
 `;
 
-const InputDateTime = styled.div`
-  display: flex;
-  border: 1px solid black;
-  background: white;
-  padding: 5px;
-  & .react-datepicker__input-container > input {
-    border: none;
+const InputCheckbox = styled.label`
+
+  & span {
+    vertical-align: middle;
   }
-`;
+`
 
 class VehicleFilter extends Component {
   constructor(props) {
@@ -111,10 +106,11 @@ class VehicleFilter extends Component {
     this.state = {
       anotherLocation: false,
       optionToPickup: null,
+      optionToPickupError: false,
       optionToReturn: null,
       pickupDate: moment(),
       pickupTime: moment(),
-      returnDate: moment(),
+      returnDate: moment().add(7, "days"),
       returnTime: moment()
     };
 
@@ -164,6 +160,17 @@ class VehicleFilter extends Component {
   }
 
   handleClick(evt) {
+    if (!this.state.optionToPickup) {
+      this.setState({
+        optionToPickupError: true
+      });
+      return;
+    }
+
+    this.setState({
+      optionToPickupError: false
+    });
+
     if (typeof this.props.onSearch === "function") {
       this.props.onSearch({
         pickup: this.state.optionToPickup
@@ -202,9 +209,12 @@ class VehicleFilter extends Component {
               onInputChange={this.props.onInputChangePickup}
               noOptionsMessage={() => null}
             />
+            <Title hide={!this.state.optionToPickupError} secondary color={"red"} extrasmall>
+              Field required
+            </Title>
           </InputField>
           <div>
-            <label>
+            <InputCheckbox>
               <input
                 type="checkbox"
                 value={this.state.anotherLocation}
@@ -217,7 +227,7 @@ class VehicleFilter extends Component {
               <Title secondary color={"#3658a4"} bold small>
                 Return the car to another location
               </Title>
-            </label>
+            </InputCheckbox>
           </div>
           <InputField hide={!this.state.anotherLocation}>
             <label>
@@ -269,19 +279,19 @@ class VehicleFilter extends Component {
               Save up to 35%
             </Title>
           </div>
-          <div>
-            <label>
+          <div >
+            <InputCheckbox>
               <input type="checkbox" />
               <Title secondary small>
                 Include flight
               </Title>
-            </label>
-            <label>
+            </InputCheckbox>
+            <InputCheckbox>
               <input type="checkbox" />
               <Title secondary small>
                 Include hotel
               </Title>
-            </label>
+            </InputCheckbox>
           </div>
         </ContainerDiscount>
         <div>

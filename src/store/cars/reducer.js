@@ -5,6 +5,7 @@ import { Record, List, fromJS } from "immutable";
 import * as types from "./actionTypes";
 
 const carstate = Record({
+  someSearch: false,
   isFetching: false,
   data: List(),
   sort: "lowest_price",
@@ -15,6 +16,7 @@ const carstate = Record({
 });
 
 const initialState = carstate({
+  someSearch: false,
   isFetching: false,
   data: List(),
   sort: "lowest_price",
@@ -27,7 +29,9 @@ const initialState = carstate({
 export default function reduce(state = initialState, action = {}) {
   switch (action.type) {
     case types.REQUESTED_DATA: {
-      return state.set("isFetching", true);
+      return state
+          .set("someSearch", true)
+          .set("isFetching", true);
     }
     case types.FETCHED_DATA: {
       return state
@@ -93,6 +97,10 @@ export function getAirportsToPickup(state) {
 
 export function getAirportsToReturn(state) {
   return state.cars.get("airportsToReturn").toJS();
+}
+
+export function getSomeSearch(state) {
+  return state.cars.get("someSearch");
 }
 
 const sortByLowestPrice = (a, b) =>

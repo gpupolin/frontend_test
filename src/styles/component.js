@@ -61,7 +61,7 @@ export const Title = styled.span`
       font-size: 12px;
       line-height: 1.17;
     `};
-    ${props =>
+  ${props =>
     props.extrasmall &&
     css`
       font-size: 10px;
@@ -71,5 +71,11 @@ export const Title = styled.span`
     props.bold &&
     css`
       font-weight: bold;
+    `};
+
+  ${props =>
+    props.hide &&
+    css`
+      display: none;
     `};
 `;

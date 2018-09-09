@@ -99,7 +99,10 @@ const VehicleImage = styled.div`
     height: 129px;
     padding: 10px 18px 30px 18px;
 
-    ${media.tablet`
+    ${media.desktop`
+      width: 150px;
+      height: 90px;
+    `} ${media.tablet`
       width:90px;
       height: 50px;
     `};
@@ -164,15 +167,29 @@ const ContainerTitleIcon = styled.p`
   flex-grow: 1;
   text-transform: uppercase;
 
-  ${media.tablet`
   & span {
-    font-size: 16px;
     line-height: 1;
   }
+  ${media.tablet`
+    & span {
+      font-size: 16px;
+    }
   `};
 `;
 
+const ButtonIcon = styled(Icon)`
+    cursor: pointer;
+`
+
 class Vehicle extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      favorite: false
+    };
+  }
+
   render() {
     return (
       <Container>
@@ -184,7 +201,14 @@ class Vehicle extends Component {
             </VehicleImage>
             <div style={{ flexGrow: 1 }}>
               <ContainerTitleIcon>
-                <Title large>{this.props.name}</Title> <Icon icon={faHeart} />
+                <Title large>{this.props.name}</Title>{" "}
+                <ButtonIcon
+                  icon={faHeart}
+                  color={this.state.favorite ? "red" : "gray"}
+                  onClick={() =>
+                    this.setState({ favorite: !this.state.favorite })
+                  }
+                />
               </ContainerTitleIcon>
               {/* <p>- Mais infos</p> */}
             </div>

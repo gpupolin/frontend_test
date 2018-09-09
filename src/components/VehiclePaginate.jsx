@@ -3,6 +3,9 @@ import ReactPaginate from "react-paginate";
 import styled, { css } from "styled-components";
 import { media } from "../styles/utils";
 
+//TODO: Ajustar o visual dos itens selecionados
+//TODO: 
+
 const Container = styled.div`
   display: flex;
   justify-content: space-around;

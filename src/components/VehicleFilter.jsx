@@ -2,24 +2,19 @@ import React, { Component } from "react";
 import * as theme from "../styles/theme";
 import styled, { css } from "styled-components";
 import { ButtonPrimary, Title, Icon } from "../styles/component";
-import { faCalendar, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 import DateTimePicker from "./DateTimePicker";
 
 import moment from "moment";
 
 import Select from "react-select";
+import { media } from "../styles/utils";
 
 const SelectStyled = {
   option: (styles, state) => ({
     ...styles,
     fontFamily: "Arial"
   }),
-  // container: styles => ({
-  //   ...styles,
-  //   minWidth: "100px",
-  //   marginRight: "30px"
-  // }),
   control: styles => ({
     ...styles,
     backgroundColor: "#ffffff",
@@ -56,6 +51,12 @@ const Container = styled.div`
   padding: 5px 10px;
   min-width: 260px;
 
+  ${media.tablet`
+    min-width: 0;
+    margin-left: 0;
+    margin-right: 0;
+  `} 
+  
   & div:first-child {
     flex-flow: column;
   }

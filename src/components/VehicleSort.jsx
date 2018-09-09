@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import styled, { css } from "styled-components";
 import Select from "react-select";
 import * as theme from "../styles/theme";
+import { media } from "../styles/utils";
 
 //TODO: Ajustar css
-//TODO: Lifting state up
-//TODO:
 
 const SelectStyled = {
   option: (styles, state) => ({
@@ -15,7 +14,7 @@ const SelectStyled = {
   container: styles => ({
     ...styles,
     minWidth: "100px",
-    marginRight: "30px"
+    // marginRight: "30px"
   }),
   control: styles => ({
     ...styles,
@@ -50,6 +49,26 @@ const optionsCurrency = [{ value: "USD", label: "USD" }];
 
 const Container = styled.div`
   display: flex;
+
+  ${media.tablet`
+    justify-content: space-around;
+    margin-top: 15px;
+    flex-flow: row wrap;
+  `}
+
+  & > div {
+    margin-right:30px;
+    ${media.tablet`
+      margin-right:0;
+      margin-bottom: 10px;
+    `}
+  }
+
+  & .sort-currency {
+    ${media.tablet`
+      display:none;
+    `};
+  }
 `;
 
 class VehicleSort extends Component {
@@ -114,6 +133,7 @@ class VehicleSort extends Component {
           options={optionsSort}
         />
         <Select
+          className={"sort-currency"}
           onChange={this.onChangeCurrency}
           value={{
             value: this.state.optionCurrency.value,

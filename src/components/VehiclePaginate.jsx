@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactPaginate from "react-paginate";
 import styled, { css } from "styled-components";
+import { media } from "../styles/utils";
 
 const Container = styled.div`
   display: flex;
@@ -12,11 +13,19 @@ const Container = styled.div`
     display: inline-block;
     padding-left: 15px;
     padding-right: 15px;
+
+    ${media.tablet`
+      padding:0;
+    `}
   }
 
   & li {
     display: inline-block;
     padding: 0 20px;
+
+    ${media.tablet`
+      padding:0 5px;
+    `}
   }
   & .break a {
     cursor: default;
@@ -27,7 +36,7 @@ class VehiclePaginate extends Component {
   constructor(props) {
     super(props);
 
-//    this.handlePageClick = this.handlePageClick.bind(this);
+    //    this.handlePageClick = this.handlePageClick.bind(this);
   }
 
   render() {

@@ -1,6 +1,7 @@
 const API = "https://api.sandbox.amadeus.com/v1.2";
 const API_KEY = "0MAJ6RpJ5vck2wlxXjiCG3PdUVctiqfq";
 
+//TODO: Rever os valores iniciais
 class AmadeusService {
   async getCarRentalAirportSearch(filter) {
     const url = `${API}/cars/search-airport?apikey=${API_KEY}&location=${

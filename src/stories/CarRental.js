@@ -15,6 +15,7 @@ import VehiclePaginate from "../components/VehiclePaginate";
 import VehicleFilter from "../components/VehicleFilter";
 import DateTimePicker from "../components/DateTimePicker";
 import moment from "moment";
+import { withViewport } from '@storybook/addon-viewport';
 
 const store = createStore(
   combineReducers(reducers),

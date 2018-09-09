@@ -6,6 +6,7 @@ import * as carsActions from "../store/cars/actions";
 
 import styled, { css } from "styled-components";
 import * as theme from "../styles/theme";
+import { media } from "../styles/utils";
 
 import Vehicle from "../components/Vehicle";
 import VehicleSort from "../components/VehicleSort";
@@ -17,6 +18,40 @@ const Container = styled.div`
   display: flex;
   padding-top: 35px;
   align-items: baseline;
+
+  & .hide-on-desktop-and-up {
+    display: none;
+  }
+
+  ${media.tablet`
+    padding-top: 0;    
+    flex-flow: column;
+    align-items: stretch;
+    margin: 0 5%;
+
+    & .hide-on-tablet-and-down {
+      display:none;
+    }
+    
+    & .hide-on-desktop-and-up {
+        display:inherit;
+    }
+  `};
+
+  ${media.phone`
+    margin: 0 auto;
+  `}
+
+  /* ${media.phone`
+
+    & .hide-on-tablet-and-down {
+      display:none;
+    }
+    
+    & .hide-on-desktop-and-up {
+        display:inherit;
+    }
+  `}; */
 `;
 
 const ContainerVehicleList = styled.div`
@@ -58,7 +93,7 @@ class CarRentalScreen extends Component {
     this.props.dispatch(carsActions.getAirports(type, value));
   }
 
-  handleSearch(filter){
+  handleSearch(filter) {
     this.props.dispatch(carsActions.getCarsRental(filter));
   }
 
@@ -70,8 +105,8 @@ class CarRentalScreen extends Component {
         <VehicleFilter
           airportsToPickup={this.props.airportsToPickup}
           airportsToReturn={this.props.airportsToReturn}
-          onInputChangePickup={(value) => this.handleInputChange("pickup", value)}
-          onInputChangeReturn={(value) => this.handleInputChange("return", value)}
+          onInputChangePickup={value => this.handleInputChange("pickup", value)}
+          onInputChangeReturn={value => this.handleInputChange("return", value)}
           onSearch={this.handleSearch}
         />
         <ContainerVehicleList>

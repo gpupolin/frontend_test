@@ -3,6 +3,7 @@ import VehiclePaginate from "./VehiclePaginate";
 import Vehicle from "./Vehicle";
 import Loading from "./Loading";
 import styled from "styled-components";
+import { fadeIn } from "../styles/utils";
 
 const ContainerNoSearch = styled.div`
   display: flex;
@@ -11,6 +12,11 @@ const ContainerNoSearch = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+  animation: ${fadeIn} 1s forwards;
+`;
+
+const Container = styled.div`
+  animation: ${fadeIn} 0.5s forwards;
 `;
 
 class VehicleList extends Component {
@@ -18,14 +24,22 @@ class VehicleList extends Component {
     if (this.props.isFetching) return <Loading />;
 
     if (!this.props.someSearch)
-      return <ContainerNoSearch><h1>To get started, select a pickup location 🙂</h1></ContainerNoSearch>;
+      return (
+        <ContainerNoSearch>
+          <h1>To get started, select a pickup location 🙂</h1>
+        </ContainerNoSearch>
+      );
 
-    if(this.props.cars.length <= 0)
-    return <ContainerNoSearch><h1>No cars found 😦</h1></ContainerNoSearch>;
+    if (this.props.cars.length <= 0)
+      return (
+        <ContainerNoSearch>
+          <h1>No cars found 😦</h1>
+        </ContainerNoSearch>
+      );
 
     if (this.props.cars && this.props.cars.length > 0)
       return (
-        <Fragment>
+        <Container>
           {this.props.cars.map((c, i) => {
             return (
               <Vehicle
@@ -48,7 +62,7 @@ class VehicleList extends Component {
             count={this.props.count}
             limit={this.props.limit}
           />
-        </Fragment>
+        </Container>
       );
   }
 }

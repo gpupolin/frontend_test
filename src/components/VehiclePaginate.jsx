@@ -25,12 +25,18 @@ const Container = styled.div`
   & li {
     display: inline-block;
     padding: 0 20px;
+    cursor: pointer;
 
     ${media.tablet`
       padding:0 5px;
     `}
   }
   & .break a {
+    cursor: default;
+  }
+
+  & .active{
+    font-weight: bolder;
     cursor: default;
   }
 `;

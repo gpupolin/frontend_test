@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 const sizes = {
   //giant: 1280,
@@ -21,3 +21,27 @@ export const media = Object.keys(sizes).reduce((accumulator, label) => {
   `;
   return accumulator;
 }, {});
+
+export const fadeIn = keyframes`
+  from {
+    transform: scale(.25);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+`;
+
+export const fadeOut = keyframes`
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(.25);
+    opacity: 0;
+  }
+`;

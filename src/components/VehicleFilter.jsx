@@ -108,10 +108,10 @@ class VehicleFilter extends Component {
       optionToPickup: null,
       optionToPickupError: false,
       optionToReturn: null,
-      pickupDate: moment(),
-      pickupTime: moment(),
+      pickupDate: moment().add(1, "days"),
+      pickupTime: moment().add(1, "days"),
       returnDate: moment().add(7, "days"),
-      returnTime: moment()
+      returnTime: moment().add(7, "days")
     };
 
     this.onChangePickup = this.onChangePickup.bind(this);

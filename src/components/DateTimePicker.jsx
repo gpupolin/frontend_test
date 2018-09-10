@@ -43,7 +43,7 @@ class DateTimePicker extends Component {
           customInput={<DateInput />}
           selected={this.props.date}
           onChange={this.props.onChangeDate}
-          filterDate={(date) => date >= moment()}
+          filterDate={(date) => date > moment()}
         />
         <span>|</span>
         <DatePicker

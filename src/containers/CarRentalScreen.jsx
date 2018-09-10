@@ -6,7 +6,7 @@ import * as carsActions from "../store/cars/actions";
 
 import styled, { css } from "styled-components";
 import * as theme from "../styles/theme";
-import { media } from "../styles/utils";
+import { media, fadeIn } from "../styles/utils";
 
 import VehicleSort from "../components/VehicleSort";
 import VehicleFilter from "../components/VehicleFilter";
@@ -54,6 +54,7 @@ const Container = styled.div`
 
 const ContainerVehicleList = styled.div`
   width: 100%;
+  animation: ${fadeIn} 1s forwards;
 `;
 
 /** Componente responsável pelo aluguel de carros. É um smart component, então possui
@@ -74,6 +75,12 @@ class CarRentalScreen extends Component {
   }
 
   handlePageClick(page) {
+    if (typeof window.scrollTo === "function") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
     this.props.dispatch(carsActions.changePage(page));
   }
 

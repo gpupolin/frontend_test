@@ -11,6 +11,19 @@ export const ButtonPrimary = styled.button`
   border: 1px solid #3658a4;
   cursor: pointer;
   box-shadow: 0 4px 2px -2px black;
+  background-position: center;
+  transition: background 0.8s;
+
+  &:hover {
+    background: #3e65bd radial-gradient(circle, transparent 1%, #3e65bd 1%)
+      center/15000%;
+  }
+
+  &:active {
+    background-color: #6eb9f7;
+    background-size: 100%;
+    transition: background 0s;
+  }
 
   & span {
     color: #ffffff;
@@ -79,3 +92,4 @@ export const Title = styled.span`
       display: none;
     `};
 `;
+
